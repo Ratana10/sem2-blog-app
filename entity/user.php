@@ -88,4 +88,8 @@ class User
   {
     return $this->updatedAt;
   }
+  public function __toString()
+  {
+    return "User: [id={$this->id}, username={$this->username}, email={$this->email}, password={$this->password}, image={$this->image}, role={$this->role}, createdAt={$this->createdAt}, updatedAt={$this->updatedAt}]";
+  }
 }
