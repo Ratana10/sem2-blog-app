@@ -1,6 +1,7 @@
 <?php
 include "../../entity/user.php";
 include "../../service/userService.php";
+include "../../config/util.php";
 
 // Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
@@ -8,25 +9,52 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if (isset($_POST['btnRegister'])) {
+  if (
+    empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) 
+    || empty($_POST['image']) || empty($_POST['role'])
+  ){
+    if (empty($_POST['username'])) {
+      $usernameError = "username is required";
+    }
+    if (empty($_POST['email'])) {
+      $emailError = "email is required";
+    }
+    if (empty($_POST['password'])) {
+      $passwordError = "password is required";
+    }
+    if (empty($_POST['image'])) {
+      $imageError = "image is required";
+    }
+
+    $valid = array(
+      "usernameError" => $usernameError,
+      "emailError" => $emailError,
+      "passwordError" => $passwordError,
+      "imageError" => $imageError,
+    );
+
+    $valid_url = http_build_query($valid);
+
+    header("Location: ./register.php?" . $valid_url);
+  }
+
   $username = $_POST['username'];
   $email = $_POST['email'];
   $password = $_POST['password'];
   $image = $_POST['image'];
-  $role = $_POST['role'];
 
-  $user = new User("", $username, $email, $password, $image, $role);
+  $hashPassword = Util::encryptPassword($password);
+
+  $user = new User(null, $username, $email, $hashPassword, $image);
 
   $userService = new UserService();
   $userId = $userService->register($user);
 
   if ($userId) {
-    createSession($userId, $username);
-    header('refresh:1 ; url= ../home.php');
+    Util::createSession($userId, $username);
+    header('Location ../home.php');
   }
 }
 
-function createSession($userId, $username)
-{
-  $_SESSION['userId'] = $userId;
-  $_SESSION['username'] = $username;
-}
+
+?>

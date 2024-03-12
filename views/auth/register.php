@@ -13,24 +13,40 @@
     <form style="width: 500px;" method="post" action="register-action.php">
       <h1 class="fw-bold text-center mb-4">Register User</h1>
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
-        <label for="floatingInput">Username</label>
+        <input type="text" class="form-control" id="floatingUsername" placeholder="Username" name="username">
+        <label for="floatingUsername">Username</label>
+        <span class="text-danger">
+          <?php if (!empty($_GET['usernameError'])) {
+            echo $_GET['usernameError'];
+          } ?>
+        </span>
       </div>
       <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="email@gmail.com" name="email">
-        <label for="floatingInput">Email</label>
+        <input type="email" class="form-control" id="floatingEmail" placeholder="email@gmail.com" name="email">
+        <label for="floatingEmail">Email</label>
+        <span class="text-danger">
+          <?php if (!empty($_GET['emailError'])) {
+            echo $_GET['emailError'];
+          } ?>
+        </span>
       </div>
       <div class="form-floating mb-3">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
         <label for="floatingPassword">Password</label>
+        <span class="text-danger">
+          <?php if (!empty($_GET['passwordError'])) {
+            echo $_GET['passwordError'];
+          } ?>
+        </span>
       </div>
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="Image" name="image">
-        <label for="floatingInput">Image</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="Role" name="role">
-        <label for="floatingInput">Role</label>
+        <input type="text" class="form-control" id="floatingImage" placeholder="Image" name="image">
+        <label for="floatingImage">Image</label>
+        <span class="text-danger">
+          <?php if (!empty($_GET['imageError'])) {
+            echo $_GET['imageError'];
+          } ?>
+        </span>
       </div>
       <button class="btn btn-primary mt-4" name="btnRegister" type="submit">Register</button>
     </form>
