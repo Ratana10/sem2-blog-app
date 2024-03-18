@@ -51,6 +51,19 @@ class UserService
     return $this->conn->insert_id;
   }
 
+  public function updateUser($user){
+    $sql = " UPDATE tbUsers SET 
+      username = '" . $user->getUsername() . "',
+      email    = '" . $user->getEmail() . "',
+      image    = '" . $user->getImage() . "',
+      WHERE id = " . $user->getId();
+
+    if (!$this->conn->query($sql)) {
+      return false;
+    }
+    return true;
+  }
+
   public function getAllUsers()
   {
     // $user = new User();
