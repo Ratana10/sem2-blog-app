@@ -1,5 +1,7 @@
 <?php
 include "../../config/conn.php";
+include "../../config/util.php";
+include "../../entity/user.php";
 
 class UserService
 {
@@ -10,11 +12,28 @@ class UserService
     global $conn;
     $this->conn = $conn;
   }
-  public function login()
+  public function login($username, $password)
   {
+    $sql = "SELECT * FROM tbUsers WHERE username= '" . $username . "'";
+    $result = $this->conn->query($sql);
+    if($result->num_rows === 0){
+      return false;
+    }
+
+    $user = $this->fetchToUser($result);
+
+    if($password === $user->getPassword()){
+      return $user;
+    }
+    else{
+      echo "incorrect";
+      return false;
+    }
   }
   public function register($user)
   {
+    //$hashPassword = Util::encryptPassword($user->getPassword());
+
     $sql = " INSERT INTO tbUsers(username, email, password, image, role) VALUES (
       '" . $user->getUsername() . "',
       '" . $user->getEmail() . "',
@@ -26,11 +45,6 @@ class UserService
 
     if (!$this->conn->query($sql)) {
       // fail insertion
-      echo "
-        <script>
-          console.log('error insertion user');
-        </script>
-      ";
       return false;
     }
     // sccess insertion
@@ -70,4 +84,20 @@ class UserService
     );
     return $user;
   }
+  private function fetchToUser($result){
+    $row = $result->fetch_assoc();
+    $user = new User(
+      $row['id'],
+      $row['username'],
+      $row['email'],
+      $row['password'],
+      $row['image'],
+      $row['role'],
+      $row['createdAt'],
+      $row['updatedAt']
+    );
+    return $user;
+  }
 }
+
+?>

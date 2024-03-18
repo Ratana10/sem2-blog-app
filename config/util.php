@@ -12,12 +12,9 @@ class Util
     return password_hash($password, PASSWORD_DEFAULT);
   }
 
-  public static function decryptPassword($password, $hashPassword)
+  public static function verifyPassword($password, $hashPassword)
   {
-    if (password_verify($password, $hashPassword)) {
-      return 1;
-    } else
-      return 0;
+    return password_verify($password, $hashPassword);
   }
 }
 

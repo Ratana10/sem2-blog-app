@@ -1,7 +1,7 @@
 <?php
-include "../../entity/user.php";
+// include "../../entity/user.php";
 include "../../service/userService.php";
-include "../../config/util.php";
+// include "../../config/util.php";
 
 // Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
@@ -10,9 +10,9 @@ if (session_status() == PHP_SESSION_NONE) {
 
 if (isset($_POST['btnRegister'])) {
   if (
-    empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) 
+    empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])
     || empty($_POST['image']) || empty($_POST['role'])
-  ){
+  ) {
     if (empty($_POST['username'])) {
       $usernameError = "username is required";
     }
@@ -55,6 +55,5 @@ if (isset($_POST['btnRegister'])) {
     header('Location ../home.php');
   }
 }
-
 
 ?>
