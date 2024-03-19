@@ -10,7 +10,7 @@
 
 <body>
   <div class="container d-flex justify-content-center mt-5">
-    <form style="width: 500px;" method="post" action="register-action.php">
+    <form style="width: 500px;" method="post" action="register-action.php" enctype="multipart/form-data">
       <h1 class="fw-bold text-center mb-4">Register User</h1>
       <div class="form-floating mb-3">
         <input type="text" class="form-control" id="floatingUsername" placeholder="Username" name="username">
@@ -40,13 +40,8 @@
         </span>
       </div>
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingImage" placeholder="Image" name="image">
+        <input type="file" class="form-control" id="floatingImage" placeholder="Image" name="image">
         <label for="floatingImage">Image</label>
-        <span class="text-danger">
-          <?php if (!empty($_GET['imageError'])) {
-            echo $_GET['imageError'];
-          } ?>
-        </span>
       </div>
       <button class="btn btn-primary mt-4" name="btnRegister" type="submit">Register</button>
     </form>
