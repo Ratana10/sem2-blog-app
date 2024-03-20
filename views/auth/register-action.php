@@ -44,8 +44,6 @@ if (isset($_POST['btnRegister'])) {
     move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $_FILES['image']['name']);
   }
 
-  $hashPassword = Util::encryptPassword($password);
-
   $user = new User(null, $username, $email, $password, $image);
 
   $userService = new UserService();
@@ -53,9 +51,7 @@ if (isset($_POST['btnRegister'])) {
 
   if ($userId) {
     Util::createSession($userId, $username);
-    header('Location ../home.php');
+    header('Location: ../home.php');
     exit();
   }
 }
-
-?>
