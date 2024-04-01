@@ -51,7 +51,8 @@ if (isset($_POST['btnRegister'])) {
 
   if ($userId) {
     Util::createSession($userId, $username);
-    header('Location: ../home.php');
+    // header('Location: ../home.php');
+    header('Location: ../index.php');
     exit();
   }
 }
