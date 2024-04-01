@@ -1,5 +1,6 @@
 <?php
-class Post{
+class Post
+{
   private $id;
   private $userId;
   private $title;
@@ -10,6 +11,16 @@ class Post{
   private $published;
   private $createdAt;
   private $updatedAt;
+
+  public function __construct($id = "", $userId = "", $title = "", $description = "", $image = "", $commentId = "", $published = "", $createdAt = "", $updatedAt = "")
+  {
+    $this->setId($id);
+    $this->setUserId($userId);
+    $this->setTitle($title);
+    $this->setDescription($description);
+    $this->setImage($image);
+    $this->setCommentId($commentId);
+  }
 
   public function setId($param)
   {
