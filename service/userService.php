@@ -16,28 +16,25 @@ class UserService
   {
     $sql = "SELECT * FROM tbUsers WHERE username= '" . $username . "'";
     $result = $this->conn->query($sql);
-    if($result->num_rows === 0){
+    if ($result->num_rows === 0) {
       return false;
     }
 
     $user = $this->fetchToUser($result);
 
-    if($password === $user->getPassword()){
+    if (password_verify($password, $user->getPassword())) {
       return $user;
-    }
-    else{
-      echo "incorrect";
+    } else {
       return false;
     }
   }
   public function register($user)
   {
-    //$hashPassword = Util::encryptPassword($user->getPassword());
-
+    $hashPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
     $sql = " INSERT INTO tbUsers(username, email, password, image, role) VALUES (
       '" . $user->getUsername() . "',
       '" . $user->getEmail() . "',
-      '" . $user->getPassword() . "',
+      '" . $hashPassword . "',
       '" . $user->getImage() . "',
       '" . $user->getRole() . "'
     )";
@@ -51,7 +48,8 @@ class UserService
     return $this->conn->insert_id;
   }
 
-  public function updateUser($user){
+  public function updateUser($user)
+  {
     $sql = " UPDATE tbUsers SET 
       username = '" . $user->getUsername() . "',
       email    = '" . $user->getEmail() . "',
@@ -70,7 +68,7 @@ class UserService
     // $sql = "SELECT * FROM tbUsers";
     // $result = $this->conn->query($sql);
     // if ($result->num_rows > 0) {
-      
+
     // }
     // return null;
   }
@@ -97,7 +95,8 @@ class UserService
     );
     return $user;
   }
-  private function fetchToUser($result){
+  private function fetchToUser($result)
+  {
     $row = $result->fetch_assoc();
     $user = new User(
       $row['id'],
@@ -112,5 +111,3 @@ class UserService
     return $user;
   }
 }
-
-?>
