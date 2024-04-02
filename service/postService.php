@@ -13,6 +13,38 @@ class PostService
     $this->conn = $conn;
   }
 
+  public function createPost($post)
+  {
+    $sql = " INSERT INTO tbPosts(userId, title, description, image) VALUES (
+      '" . $post->getUserId() . "',
+      '" . $post->getTitle() . "',
+      '" . $post->getDescription() . "',
+      '" . $post->getImage() . "'
+    )";
+
+    if (!$this->conn->query($sql)) {
+      // fail insertion
+      return false;
+    }
+
+    return $this->conn->insert_id;
+  }
+
+  public function updatePost($post)
+  {
+    $sql = " UPDATE tbPosts SET
+    title = '" . $post->getTitle() . "',
+    description = '" . $post->getDescription() . "',
+    image = '" . $post->getImage() . "'
+    WHERE id=" . $post->getId();
+
+    if (!$this->conn->query($sql)) {
+      // fail insertion
+      return false;
+    }
+
+    return true;
+  }
   public function getAllPosts()
   {
     $sql = "SELECT * FROM tbPosts";
@@ -34,7 +66,7 @@ class PostService
   public function likePost($postId)
   {
     $sql = "UPDATE tbPosts SET Liked = Liked + 1 WHERE id=$postId";
-    if(!$this->conn->query($sql)){
+    if (!$this->conn->query($sql)) {
       return false;
     }
     return true;

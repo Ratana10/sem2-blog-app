@@ -4,14 +4,17 @@ include "../service/postService.php";
 
 $postService = new PostService();
 
-// // $userService->login("ratana", "12345");
+//$posts = $postService->getAllPosts();
 
-$posts = $postService->getAllPosts();
+$post = new Post(4, 2, "Party update", "Chill with my friend", null);
 
-$postService->likePost(1);
+$postService->updatePost($post);
+//$postService->createPost($post);
+// $postService->likePost(1);
 
 
-function testArrPosts($posts){
+function testArrPosts($posts)
+{
   if ($posts !== false) {
     foreach ($posts as $post) {
       // Output post information
@@ -20,7 +23,7 @@ function testArrPosts($posts){
       echo "Title: " . $post->getTitle() . "<br>";
       echo "Description: " . $post->getDescription() . "<br>";
       // Output other properties as needed
-  
+
     }
   } else {
     echo "No posts found.";
