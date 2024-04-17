@@ -13,16 +13,27 @@ class PostService
     $this->conn = $conn;
   }
 
+  /*
+    INSERT INTO `tbPosts` (`id`, `userId`, `title`, `description`, `image`, `liked`, `commentId`, `published`, `createdAt`, `updatedAt`) 
+    VALUES (NULL, '1', '11111', '11111111', NULL, '0', NULL, '0', current_timestamp(), NULL);
+    */
   public function createPost($post)
   {
-    $sql = " INSERT INTO tbPosts(userId, title, description, image) VALUES (
+    $sql = " INSERT INTO tbPosts(id, userId, title, description, image, liked, commentId, published, createdAt, updatedAt   ) VALUES (
+      '" . $post->getId() . "';
       '" . $post->getUserId() . "',
       '" . $post->getTitle() . "',
       '" . $post->getDescription() . "',
-      '" . $post->getImage() . "'
+      '" . $post->getImage() . "',
+      '" . $post->getSlug() . "',
+      '" . $post->getCommentId() . "',
+      '" . $post->getPublished() . "',
+      '" . $post->getCreatedAt() . "',
+      '" . $post->getUpdatedAt() . "'
     )";
 
-    if (!$this->conn->query($sql)) {
+    if (!$this->conn
+    ->query($sql)) {
       // fail insertion
       return false;
     }

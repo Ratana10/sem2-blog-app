@@ -12,13 +12,14 @@ class Post
   private $createdAt;
   private $updatedAt;
 
-  public function __construct($id = "", $userId = "", $title = "", $description = "", $image = "",  $createdAt = "", $updatedAt = "")
+  public function __construct($id = "", $userId = "", $title = "", $description = "", $image = "")
   {
     $this->setId($id);
     $this->setUserId($userId);
     $this->setTitle($title);
     $this->setDescription($description);
     $this->setImage($image);
+   
   }
 
   public function setId($param)
