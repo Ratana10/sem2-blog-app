@@ -55,4 +55,6 @@ if (isset($_POST['btnRegister'])) {
     header('Location: ../index.php');
     exit();
   }
+
+  $userId = $_SESSION['userId'];
 }

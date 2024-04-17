@@ -45,7 +45,7 @@ class PostService
 
     return true;
   }
-  public function getAllPosts()
+  public function getAllPosts($userId)
   {
     $sql = "SELECT * FROM tbPosts";
 
