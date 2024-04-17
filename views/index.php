@@ -1,3 +1,22 @@
+<?php
+
+// Start the session if it hasn't been started yet
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
+//Check username and userid 
+if (!isset($_SESSION['userId']) && !isset($_SESSION['username'])) {
+  header('location: ./auth/login.php');
+}
+
+
+include "../service/postService.php";
+$postService = new PostService();
+$posts = $postService->getAllPosts($_SESSION['userId']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,94 +73,58 @@
   </nav>
   <!-- End Navbar -->
   <div class="container">
-    <div class="wrapper d-flex justify-content-center">
-      <div class="card mb-3">
-        <img class="img-fluid" src="../source/images/posts/car.jpg" style="width: 56rem" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <div class="mb-2">
-            <div class="row">
-              <div class="col-8 d-flex align-items-center justify-content-start g-2">
-                <div class="mx-1">
-                  <!-- <span>Profile</span> -->
-                  <img class="profile-img" src="../source/images/users/under.jpeg" class="img-fluid" alt="..." />
+    <?php
+    foreach ($posts as $post) {
+    ?>
+      <div class="wrapper d-flex justify-content-center">
+        <div class="card mb-3">
+          <img class="img-fluid" src="../source/images/posts/car.jpg" style="width: 56rem" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <div class="mb-2">
+              <div class="row">
+                <div class="col-8 d-flex align-items-center justify-content-start g-2">
+                  <div class="mx-1">
+                    <!-- <span>Profile</span> -->
+                    <img class="profile-img" src="../source/images/users/under.jpeg" class="img-fluid" alt="..." />
+                  </div>
+                  <div class="user-acc mx-1">
+                    <h5 class="card-title">
+                      <?php echo $_SESSION['username']; ?>
+                    </h5>
+                  </div>
                 </div>
-                <div class="user-acc mx-1">
-                  <h5 class="card-title">N1T</h5>
-                </div>
-              </div>
-              <div class="col-4 d-flex align-items-center justify-content-end">
-                <div class="icon d-flex gap-2">
-                  <span class="pe-2">1</span>
-                  <span><i class="fa-regular fa-heart fa-lg pe-1"></i></span>
-                  <span class="pe-2">1</span>
-                  <span><i class="fa-regular fa-comment fa-lg"></i></span>
-                  <span class="ps-2"><i class="fa-regular fa-share-from-square fa-lg"></i></span>
+                <div class="col-4 d-flex align-items-center justify-content-end">
+                  <div class="icon d-flex gap-2">
+                    <span class="pe-2">1</span>
+                    <span><i class="fa-regular fa-heart fa-lg pe-1"></i></span>
+                    <span class="pe-2">1</span>
+                    <span><i class="fa-regular fa-comment fa-lg"></i></span>
+                    <span class="ps-2"><i class="fa-regular fa-share-from-square fa-lg"></i></span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="content mb-4">
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-          </div>
-          <div class="cmt">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2" />
-              <button class="btn btn-info" type="button" id="button-addon2">
-                <i class="fa-solid fa-paper-plane fa-lg" style="color: #ffffff"></i>
-              </button>
+            <div class="content mb-4">
+              <p class="card-text">
+                <?php echo $post->getDescription() ?>
+              </p>
+            </div>
+            <div class="cmt">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                <button class="btn btn-info" type="button" id="button-addon2">
+                  <i class="fa-solid fa-paper-plane fa-lg" style="color: #ffffff"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="wrapper d-flex justify-content-center">
-      <div class="card mb-3">
-        <img class="img-fluid" src="../source/images/posts/car.jpg" style="width: 56rem" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <div class="mb-2">
-            <div class="row">
-              <div class="col-8 d-flex align-items-center justify-content-start g-2">
-                <div class="mx-1">
-                  <!-- <span>Profile</span> -->
-                  <img class="profile-img" src="../source/images/users/under.jpeg" class="img-fluid" alt="..." />
-                </div>
-                <div class="user-acc mx-1">
-                  <h5 class="card-title">N1T</h5>
-                </div>
-              </div>
-              <div class="col-4 d-flex align-items-center justify-content-end">
-                <div class="icon d-flex gap-2">
-                  <span class="pe-2">1</span>
-                  <span><i class="fa-regular fa-heart fa-lg pe-1"></i></span>
-                  <span class="pe-2">1</span>
-                  <span><i class="fa-regular fa-comment fa-lg"></i></span>
-                  <span class="ps-2"><i class="fa-regular fa-share-from-square fa-lg"></i></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="content mb-4">
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-          </div>
-          <div class="cmt">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2" />
-              <button class="btn btn-info" type="button" id="button-addon2">
-                <i class="fa-solid fa-paper-plane fa-lg" style="color: #ffffff"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+    <?php
+    }
+    ?>
+
   </div>
 
 </body>
