@@ -1,6 +1,11 @@
 <?php
 include "../../service/userService.php";
 
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
 if (isset($_POST['btnLogin'])) {
   // form validation
   if (
@@ -32,6 +37,10 @@ if (isset($_POST['btnLogin'])) {
   if ($user) {
     // verify
     // header("Location: ../home.php");
+    $_SESSION['userId'] = $user->getId();
+    $_SESSION['username'] = $username;
+
+
     header("Location: ../index.php");
     exit();
   } else {

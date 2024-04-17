@@ -9,7 +9,7 @@ $postService = new PostService();
 $post = new Post(4, 2, "Party update", "Chill with my friend", null);
 
    
-$posts = $postService->getAllPosts();
+$posts = $postService->getAllPosts(1);
 
 testArrPosts($posts);
 // $postService->updatePost($post);
