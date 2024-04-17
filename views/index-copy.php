@@ -11,23 +11,9 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   <title>Document</title>
-  <style>
-    .profile-img {
-      border: 1px solid rgb(255, 255, 255);
-      position: relative;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      z-index: 1;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-    }
-  </style>
 </head>
 
 <body>
-  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Navbar</a>
@@ -52,7 +38,6 @@
       </div>
     </div>
   </nav>
-  <!-- End Navbar -->
   <div class="container">
     <div class="wrapper d-flex justify-content-center">
       <div class="card mb-3">
@@ -63,51 +48,15 @@
               <div class="col-8 d-flex align-items-center justify-content-start g-2">
                 <div class="mx-1">
                   <!-- <span>Profile</span> -->
-                  <img class="profile-img" src="../source/images/users/under.jpeg" class="img-fluid" alt="..." />
-                </div>
-                <div class="user-acc mx-1">
-                  <h5 class="card-title">N1T</h5>
-                </div>
-              </div>
-              <div class="col-4 d-flex align-items-center justify-content-end">
-                <div class="icon d-flex gap-2">
-                  <span class="pe-2">1</span>
-                  <span><i class="fa-regular fa-heart fa-lg pe-1"></i></span>
-                  <span class="pe-2">1</span>
-                  <span><i class="fa-regular fa-comment fa-lg"></i></span>
-                  <span class="ps-2"><i class="fa-regular fa-share-from-square fa-lg"></i></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="content mb-4">
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-          </div>
-          <div class="cmt">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2" />
-              <button class="btn btn-info" type="button" id="button-addon2">
-                <i class="fa-solid fa-paper-plane fa-lg" style="color: #ffffff"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="wrapper d-flex justify-content-center">
-      <div class="card mb-3">
-        <img class="img-fluid" src="../source/images/posts/car.jpg" style="width: 56rem" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <div class="mb-2">
-            <div class="row">
-              <div class="col-8 d-flex align-items-center justify-content-start g-2">
-                <div class="mx-1">
-                  <!-- <span>Profile</span> -->
-                  <img class="profile-img" src="../source/images/users/under.jpeg" class="img-fluid" alt="..." />
+                  <img style="border: 1px solid rgb(255, 255, 255); 
+                            position: relative; 
+                            display: block; 
+                            margin-left: auto; 
+                            margin-right: auto; 
+                            z-index: 1;  
+                            width: 60px;
+                            height: 60px;
+                            border-radius: 50%; " src="../source/images/users/under.jpeg" class="img-fluid" alt="..." />
                 </div>
                 <div class="user-acc mx-1">
                   <h5 class="card-title">N1T</h5>
