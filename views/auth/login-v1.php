@@ -5,9 +5,12 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if (isset($_SESSION['userId']) && isset($_SESSION['username'])) {
-  header('location: ../index.php');
+  if (isset($_SESSION['prev_route'])) {
+    // Redirect the user to the previous route
+    header('location: ' . $_SESSION['prev_route']);
+    exit();
+  }
 }
-
 ?>
 
 <!DOCTYPE html>
