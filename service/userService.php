@@ -40,20 +40,12 @@ class UserService
     )";
 
 
-    try {
-      if ($this->conn->query($sql)) {
-          // Successful insertion
-          return $this->conn->insert_id;
-      } else {
-          // Failed insertion
-          // You can log the error if needed
-          // error_log($this->conn->error);
-          return false;
-      }
-  } catch (mysqli_sql_exception $e) {
-      // Handle the SQL exception
-      return $e->getMessage();
-  }
+    if (!$this->conn->query($sql)) {
+      // fail insertion
+      return false;
+    }
+    // sccess insertion
+    return $this->conn->insert_id;
   }
 
   public function updateUser($user)
@@ -103,6 +95,41 @@ class UserService
     );
     return $user;
   }
+
+  public function checkEmail($email)
+  {
+    $sql = "SELECT COUNT(*) as count FROM tbUsers WHERE email= '$email'";
+    $result = $this->conn->query($sql);
+
+    if (!$result) {
+      return false;
+    }
+
+    $row = $result->fetch_assoc();
+    if ($row['count'] > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public function checkUsername($username)
+  {
+    $sql = "SELECT COUNT(*) as count FROM tbUsers WHERE username= '$username'";
+    $result = $this->conn->query($sql);
+
+    if (!$result) {
+      return false;
+    }
+
+    $row = $result->fetch_assoc();
+    if ($row['count'] > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
   private function fetchToUser($result)
   {
     $row = $result->fetch_assoc();

@@ -36,6 +36,32 @@ if (isset($_POST['btnRegister'])) {
     header("Location: ./register.php?" . $valid_url);
   } else {
 
+    $user = new User(null, $username, $email, $password, "users/" . $image);
+
+    $userService = new UserService();
+
+    // check exist email and username
+    $usernameExist = $userService->checkUsername($username);
+    $emailExist = $userService->checkEmail($email);
+
+    if ($usernameExist || $emailExist) {
+      if ($usernameExist) {
+        $usernameError = "username already exist";
+      }
+
+      if ($emailExist) {
+        $emailError = "email already exist";
+      }
+
+      $valid = array(
+        "usernameError" => $usernameError,
+        "emailError" => $emailError,
+      );
+
+      $valid_url = http_build_query($valid);
+
+      header("Location: ./register.php?" . $valid_url);
+    }
 
     // check if client upload image 
     if (!empty($image)) {
@@ -44,12 +70,6 @@ if (isset($_POST['btnRegister'])) {
       move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $_FILES['image']['name']);
     }
 
-    $user = new User(null, $username, $email, $password, "users/" . $image);
-
-    $userService = new UserService();
-
-    
-
     $userId = $userService->register($user);
 
     if ($userId) {
@@ -57,38 +77,8 @@ if (isset($_POST['btnRegister'])) {
       $_SESSION['userId'] = $userId;
       $_SESSION['username'] = $user->getUsername();
 
-
       header('Location: ../index.php');
       exit();
-    }else{
-      
     }
   }
-
-  // $username = $_POST['username'];
-  // $email = $_POST['email'];
-  // $password = $_POST['password'];
-  // $image = $_FILES['image']['name'];
-
-  // // check if client upload image 
-  // if (!empty($image)) {
-  //   $image = $_FILES['image']['name'];
-
-  //   $uploadDir = "../../source/images/users/";
-  //   move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $_FILES['image']['name']);
-  // }
-
-  // $user = new User(null, $username, $email, $password, $image);
-
-  // $userService = new UserService();
-  // $userId = $userService->register($user);
-
-  // if ($userId) {
-  //   Util::createSession($userId, $username);
-  //   // header('Location: ../home.php');
-  //   header('Location: ../index.php');
-  //   exit();
-  // }
-
-  // $userId = $_SESSION['userId'];
 }
