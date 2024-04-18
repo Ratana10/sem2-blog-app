@@ -95,6 +95,41 @@ class UserService
     );
     return $user;
   }
+
+  public function checkEmail($email)
+  {
+    $sql = "SELECT COUNT(*) as count FROM tbUsers WHERE email= '$email'";
+    $result = $this->conn->query($sql);
+
+    if (!$result) {
+      return false;
+    }
+
+    $row = $result->fetch_assoc();
+    if ($row['count'] > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public function checkUsername($username)
+  {
+    $sql = "SELECT COUNT(*) as count FROM tbUsers WHERE username= '$username'";
+    $result = $this->conn->query($sql);
+
+    if (!$result) {
+      return false;
+    }
+
+    $row = $result->fetch_assoc();
+    if ($row['count'] > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
   private function fetchToUser($result)
   {
     $row = $result->fetch_assoc();

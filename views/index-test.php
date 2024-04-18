@@ -8,7 +8,11 @@ $postService = new PostService();
 
 $post = new Post(4, 2, "Party update", "Chill with my friend", null);
 
-$postService->updatePost($post);
+   
+$posts = $postService->getAllPosts(1);
+
+testArrPosts($posts);
+// $postService->updatePost($post);
 //$postService->createPost($post);
 // $postService->likePost(1);
 
