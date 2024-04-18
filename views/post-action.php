@@ -25,7 +25,7 @@ $image = $_FILES['image']['name'];
   }
 
   echo ("Image name : " . $image);
-$post = new Post(4, 2, null,$description, $image);
+$post = new Post(null, @$userId, null,$description, $image);
 $postService->createPost($post);
 
 echo "Success";
