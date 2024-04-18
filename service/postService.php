@@ -19,17 +19,11 @@ class PostService
     */
   public function createPost($post)
   {
-    $sql = " INSERT INTO tbPosts(id, userId, title, description, image, liked, commentId, published, createdAt, updatedAt   ) VALUES (
-      '" . $post->getId() . "';
+    $sql = " INSERT INTO tbPosts(userId, title, description, image) VALUES (
       '" . $post->getUserId() . "',
       '" . $post->getTitle() . "',
       '" . $post->getDescription() . "',
-      '" . $post->getImage() . "',
-      '" . $post->getSlug() . "',
-      '" . $post->getCommentId() . "',
-      '" . $post->getPublished() . "',
-      '" . $post->getCreatedAt() . "',
-      '" . $post->getUpdatedAt() . "'
+      '" . $post->getImage() . "'
     )";
 
     if (!$this->conn

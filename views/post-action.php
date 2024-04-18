@@ -1,27 +1,35 @@
 <?php
 
-include "../../service/postService.php";
+include "../service/postService.php";
 // Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
   }
 
 
+
 if(isset($_POST["postBtn"])){
+    $userId = $_SESSION['userId'];
+    echo("user id " . $userId);
     $description = $_POST['description'];
-    $userId = 1;
-    echo $description;
 
-    $post = new Post(NULL, 1, '1111132323', '22323323', NULL);
+    $postService = new PostService();
+$image = $_FILES['image']['name'];
 
-    echo ("get post: "   );
-    
-    //  $postedService = $postService->createPost($post);
-    //  echo ($postedService);
+  // check if client upload image 
+  if (!empty($image)) {
+    $image = $_FILES['image']['name'];
 
-    //  if ($postedService){
-       
-    //  }
+    $uploadDir = "../source/images/posts/";
+    move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $_FILES['image']['name']);
+  }
+
+  echo ("Image name : " . $image);
+$post = new Post(4, 2, null,$description, $image);
+$postService->createPost($post);
+
+echo "Success";
+header("Location: ../views/#");
 }
 
 ?>
