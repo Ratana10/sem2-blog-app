@@ -23,8 +23,8 @@ $conn->select_db($database);
 // create table users
 $sql = "CREATE TABLE IF NOT EXISTS tbUsers(
   id int(6) AUTO_INCREMENT PRIMARY KEY,
-  username NVARCHAR(50) NOT NULL,
-  email NVARCHAR(50) NULL,
+  username NVARCHAR(50) NOT NULL UNIQUE,
+  email NVARCHAR(50) NULL UNIQUE,
   password NVARCHAR(255) NOT NULL,
   image NVARCHAR(255) NOT NULL,
   role NVARCHAR(50) NOT NULL,

@@ -40,12 +40,20 @@ class UserService
     )";
 
 
-    if (!$this->conn->query($sql)) {
-      // fail insertion
-      return false;
-    }
-    // sccess insertion
-    return $this->conn->insert_id;
+    try {
+      if ($this->conn->query($sql)) {
+          // Successful insertion
+          return $this->conn->insert_id;
+      } else {
+          // Failed insertion
+          // You can log the error if needed
+          // error_log($this->conn->error);
+          return false;
+      }
+  } catch (mysqli_sql_exception $e) {
+      // Handle the SQL exception
+      return $e->getMessage();
+  }
   }
 
   public function updateUser($user)
