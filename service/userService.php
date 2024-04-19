@@ -1,7 +1,6 @@
 <?php
-include "../../config/conn.php";
-include "../../config/util.php";
-include "../../entity/user.php";
+include "../config/conn.php";
+include "../entity/user.php";
 
 class UserService
 {

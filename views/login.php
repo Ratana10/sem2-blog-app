@@ -1,57 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+// Start the session if it hasn't been started yet
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+if (isset($_SESSION['userId']) && isset($_SESSION['username'])) {
+  header('location: ./index.php');
+}
 
-  <title>Document</title>
-  <style>
-    .logo-img {
-      width: 40px;
-      height: 40px;
-    }
+?>
 
-    .avatar {
-      vertical-align: middle;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-  </style>
-</head>
+<!-- header -->
+<?php include('./include/header.php') ?>
 
-<body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
+<!-- Contain -->
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+          <div class="card-body p-4 p-sm-5">
+            <h5 class="card-title text-center mb-5">Login In</h5>
+            <form action="login-action.php" method="post">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Enter username" name="username">
+                <label for="floatingInput">Username</label>
+                <span class="text-danger">
+                  <?php if (!empty($_GET['usernameError'])) {
+                    echo $_GET['usernameError'];
+                  } ?>
+                </span>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Enter password" name="password">
+                <label for="floatingPassword">Password</label>
+                <span class="text-danger">
+                  <?php if (!empty($_GET['passwordError'])) {
+                    echo $_GET['passwordError'];
+                  } ?>
+                </span>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" name="btnLogin">
+                  Login</button>
+              </div>
+              <span class="text-danger">
+                <?php if (!empty($_GET['invalid'])) {
+                  echo $_GET['invalid'];
+                } ?>
+              </span>
+              <hr class="my-4">
+              <div>
+                <a href="register.php">
+                  <p class="text-end ">Don't have an account ?</p>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
+  </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+<!-- footer -->
+<?php include('./include/footer.php') ?>

@@ -17,7 +17,7 @@
       <div class="btn-group  ">
         <a class="nav-link " type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
           <span>Ratana</span>
-          <img src="../source/images/users/img_avatar.png" class="rounded-circle ms-2 avatar">
+          <img src="../source/images/users/default.png" class="rounded-circle ms-2 avatar">
           <i class="fa fa-caret-down" aria-hidden="true"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end ">
@@ -37,7 +37,7 @@
             </a>
           </li>
           <li>
-            <a class="dropdown-item" href="./auth/logout.php">
+            <a class="dropdown-item" href="./logout.php">
               <span><i class="fa-solid fa-right-from-bracket"></i></span>Logout
             </a>
           </li>
