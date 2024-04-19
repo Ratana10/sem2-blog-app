@@ -82,7 +82,7 @@ class PostService
       $row['id'],
       $row['userId'],
       $row['title'],
-      $row['description'],
+      $row['description'],  
       $row['image'],
       $row['commentId'],
       $row['published'],
