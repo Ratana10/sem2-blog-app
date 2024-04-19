@@ -45,16 +45,6 @@ if (isset($_SESSION['userId']) && isset($_SESSION['username'])) {
       letter-spacing: 0.05rem;
       padding: 0.75rem 1rem;
     }
-
-    .btn-google {
-      color: white !important;
-      background-color: #ea4335;
-    }
-
-    .btn-facebook {
-      color: white !important;
-      background-color: #3b5998;
-    }
   </style>
 </head>
 

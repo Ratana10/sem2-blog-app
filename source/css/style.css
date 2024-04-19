@@ -1,0 +1,48 @@
+/* Setting */
+.logo-img{
+  width: 40px; 
+  height: 40px;
+}
+
+.profile{
+  border:  1px solid rgb(255, 255, 255);
+  position: relative;
+  display: block;
+  margin: auto;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.avatar{
+  width: 40px;
+  height: 40px;
+}
+
+/* font awesome */
+.fa-house{
+  font-size: 24px; 
+  color: blue;
+}
+
+.fa-right-from-bracket{
+  font-size: 18px;
+  margin-right: 10px;
+  color: red;
+}
+
+.fa-gear{
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.fa-tag{
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.fa-square-plus{
+  font-size: 18px;
+  margin-right: 10px;
+}
