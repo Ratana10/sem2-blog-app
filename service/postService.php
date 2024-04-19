@@ -27,7 +27,7 @@ class PostService
     )";
 
     if (!$this->conn
-    ->query($sql)) {
+      ->query($sql)) {
       // fail insertion
       return false;
     }
