@@ -39,7 +39,7 @@ if (isset($_POST['btnRegister'])) {
     empty($image) ? $image = 'default.png' : $image;
 
 
-    $user = new User(null, $username, $email, $password, "users/" . $image);
+    $user = new User(null, $username, $email, $password, "users/" . $image, "user");
 
     $userService = new UserService();
 
