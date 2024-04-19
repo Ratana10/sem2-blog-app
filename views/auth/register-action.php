@@ -1,5 +1,5 @@
 <?php
-include "../service/userService.php";
+include "../../service/userService.php";
 
 // Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
@@ -39,7 +39,7 @@ if (isset($_POST['btnRegister'])) {
     empty($image) ? $image = 'default.png' : $image;
 
 
-    $user = new User(null, $username, $email, $password, "users/" . $image);
+    $user = new User(null, $username, $email, $password, "users/" . $image, "user");
 
     $userService = new UserService();
 
@@ -69,7 +69,7 @@ if (isset($_POST['btnRegister'])) {
     // check if client upload image 
     if (!empty($image)) {
 
-      $uploadDir = "../source/images/users/";
+      $uploadDir = "../../source/images/users/";
       move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $_FILES['image']['name']);
     }
 
@@ -80,7 +80,7 @@ if (isset($_POST['btnRegister'])) {
       $_SESSION['userId'] = $userId;
       $_SESSION['username'] = $user->getUsername();
 
-      header('Location: ./index.php');
+      header('Location: ../index.php');
       exit();
     }
   }
