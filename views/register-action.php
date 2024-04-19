@@ -36,6 +36,9 @@ if (isset($_POST['btnRegister'])) {
     header("Location: ./register.php?" . $valid_url);
   } else {
 
+    empty($image) ? $image = 'default.png' : $image;
+
+
     $user = new User(null, $username, $email, $password, "users/" . $image);
 
     $userService = new UserService();
