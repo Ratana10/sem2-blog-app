@@ -37,7 +37,7 @@
             </a>
           </li>
           <li>
-            <a class="dropdown-item" href="./logout.php">
+            <a class="dropdown-item" href="./auth/logout.php">
               <span><i class="fa-solid fa-right-from-bracket"></i></span>Logout
             </a>
           </li>
