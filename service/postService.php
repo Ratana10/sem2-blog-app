@@ -1,6 +1,5 @@
 <?php
 include "../config/conn.php";
-include "../config/util.php";
 include "../entity/post.php";
 
 class PostService
@@ -27,7 +26,7 @@ class PostService
     )";
 
     if (!$this->conn
-    ->query($sql)) {
+      ->query($sql)) {
       // fail insertion
       return false;
     }
@@ -50,7 +49,7 @@ class PostService
 
     return true;
   }
-  public function getAllPosts($userId)
+  public function getAllPosts()
   {
     $sql = "SELECT * FROM tbPosts";
 
@@ -84,6 +83,7 @@ class PostService
       $row['title'],
       $row['description'],  
       $row['image'],
+      $row['liked'],
       $row['commentId'],
       $row['published'],
       $row['createdAt'],

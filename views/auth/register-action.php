@@ -36,7 +36,10 @@ if (isset($_POST['btnRegister'])) {
     header("Location: ./register.php?" . $valid_url);
   } else {
 
-    $user = new User(null, $username, $email, $password, "users/" . $image);
+    empty($image) ? $image = 'default.png' : $image;
+
+
+    $user = new User(null, $username, $email, $password, "users/" . $image, "user");
 
     $userService = new UserService();
 
@@ -76,6 +79,7 @@ if (isset($_POST['btnRegister'])) {
 
       $_SESSION['userId'] = $userId;
       $_SESSION['username'] = $user->getUsername();
+      $_SESSION['image'] = $user->getImage();
 
       header('Location: ../index.php');
       exit();

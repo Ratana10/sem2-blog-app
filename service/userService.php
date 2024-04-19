@@ -1,7 +1,6 @@
 <?php
-include "../../config/conn.php";
-include "../../config/util.php";
-include "../../entity/user.php";
+include __DIR__ . "/../config/conn.php";
+include __DIR__ . "/../entity/user.php";
 
 class UserService
 {
@@ -20,7 +19,8 @@ class UserService
       return false;
     }
 
-    $user = $this->fetchToUser($result);
+    $row = $result->fetch_assoc();
+    $user = $this->fetchToUser($row);
 
     if (password_verify($password, $user->getPassword())) {
       return $user;
@@ -130,9 +130,9 @@ class UserService
     return false;
   }
 
-  private function fetchToUser($result)
+  private function fetchToUser($row)
   {
-    $row = $result->fetch_assoc();
+
     $user = new User(
       $row['id'],
       $row['username'],
