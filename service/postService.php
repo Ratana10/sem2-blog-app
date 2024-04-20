@@ -1,6 +1,6 @@
 <?php
-include "../config/conn.php";
-include "../entity/post.php";
+include_once "config/conn.php";
+include_once "entity/post.php";
 
 class PostService
 {
@@ -49,7 +49,7 @@ class PostService
 
     return true;
   }
-  public function getAllPosts()
+  public function getAllPostsV1()
   {
     $sql = "SELECT * FROM tbPosts";
 
@@ -66,6 +66,47 @@ class PostService
     }
 
     return $posts;
+  }
+  // Test get all post with user
+  public function getAllPosts()
+  {
+    $sql = "SELECT p.*, u.username 
+            FROM tbPosts p INNER JOIN tbUsers u 
+            ON p.userId = u.id
+            ";
+
+    $result = $this->conn->query($sql);
+    if ($result->num_rows === 0) {
+      return false;
+    }
+
+    $posts = array();
+
+    while ($row = $result->fetch_assoc()) {
+      $post = $this->fetchPostWithUser($row);
+      $posts[] = $post; // Add the post to the array
+    }
+
+    return $posts;
+  }
+  private function fetchPostWithUser($row)
+  {
+    $post = new Post(
+      $row['id'],
+      $row['userId'],
+      $row['title'],
+      $row['description'],  
+      $row['image'],
+      $row['liked'],
+      $row['commentId'],
+      $row['published'],
+      $row['createdAt'],
+      $row['updatedAt']
+    );
+
+    $post->getUser()->setUsername($row['username']);
+
+    return $post;
   }
   public function likePost($postId)
   {

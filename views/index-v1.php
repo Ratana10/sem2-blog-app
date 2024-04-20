@@ -55,6 +55,7 @@
       object-fit: contain;
       display: block;
       border-radius: 8px;
+      height: 250px;
     }
 
     .custom-file-input {
