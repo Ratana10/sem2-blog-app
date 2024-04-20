@@ -16,8 +16,8 @@
       </ul>
       <div class="btn-group  ">
         <a class="nav-link " type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-          <span>Ratana</span>
-          <img src="../source/images/users/default.png" class="rounded-circle ms-2 avatar">
+          <span> <?php echo $_SESSION["username"] ?> </span>
+          <img src="../source/images/<?php echo $_SESSION["image"] ?>" class="rounded-circle ms-2 avatar">
           <i class="fa fa-caret-down" aria-hidden="true"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end ">
