@@ -1,6 +1,6 @@
 <?php
-include "../config/conn.php";
-include "../entity/post.php";
+include_once "config/conn.php";
+include_once "entity/post.php";
 
 class PostService
 {

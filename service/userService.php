@@ -1,6 +1,6 @@
 <?php
-include __DIR__ . "/../config/conn.php";
-include __DIR__ . "/../entity/user.php";
+include_once "config/conn.php";
+include_once "entity/user.php";
 
 class UserService
 {

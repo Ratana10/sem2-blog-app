@@ -1,5 +1,5 @@
 <?php
-include_once "../entity/user.php";
+include_once "user.php";
 
 class Post
 {
