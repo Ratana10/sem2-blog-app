@@ -62,16 +62,32 @@ class UserService
     return true;
   }
 
-  public function getAllUsers()
+  public function getAllUsers($role = "user")
   {
     // $user = new User();
-    // $sql = "SELECT * FROM tbUsers";
-    // $result = $this->conn->query($sql);
-    // if ($result->num_rows > 0) {
+    $sql = "SELECT id, username, email, image, role, createdAt, updatedAt
+    FROM tbUsers WHERE role='$role' ";
 
-    // }
-    // return null;
+    $users = array();
+
+    $result = $this->conn->query($sql);
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $user = $this->fetchToUser($row);
+
+        $users[] = $user;
+      }
+    }
+    return $users;
   }
+
+  public function countUser($role = "user")
+  {
+    // $user = new User();
+    $sql = "SELECT 
+    FROM tbUsers WHERE role='$role' ";
+  }
+
   public function getUserById($userId)
   {
     $sql = "SELECT id, username, email, password, image, 
@@ -83,16 +99,7 @@ class UserService
     }
 
     $row = $result->fetch_assoc();
-    $user = new User(
-      $row['id'],
-      $row['username'],
-      $row['email'],
-      $row['password'],
-      $row['image'],
-      $row['role'],
-      $row['createdAt'],
-      $row['updatedAt']
-    );
+    $user = $this->fetchToUser($row);
     return $user;
   }
 
