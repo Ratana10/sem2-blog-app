@@ -1,4 +1,6 @@
 <?php
+include_once "../entity/user.php";
+
 class Post
 {
   private $id;
@@ -12,6 +14,7 @@ class Post
   private $createdAt;
   private $updatedAt;
   private $liked;
+  private $user;
 
   public function __construct($id = "", $userId = "", $title = "", $description = "", $image = "", $liked = 0)
   {
@@ -21,6 +24,7 @@ class Post
     $this->setDescription($description);
     $this->setImage($image);
     $this->setLiked($liked);
+    $this->setUser();
   }
 
   public function setId($param)
@@ -111,5 +115,13 @@ class Post
   public function getLiked()
   {
     return $this->liked;
+  }
+  public function setUser()
+  {
+    $this->user = new User();
+  }
+  public function getUser()
+  {
+    return $this->user;
   }
 }
