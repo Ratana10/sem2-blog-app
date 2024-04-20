@@ -36,6 +36,7 @@ if (isset($_POST['btnLogin'])) {
       // verify
       $_SESSION['userId'] = $user->getId();
       $_SESSION['username'] = $username;
+      $_SESSION['image'] = $user->getImage();
 
       if ($user->getRole() == "user") {
         header("Location: ../index.php");

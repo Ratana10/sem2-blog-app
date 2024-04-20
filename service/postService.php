@@ -49,7 +49,7 @@ class PostService
 
     return true;
   }
-  public function getAllPosts($userId)
+  public function getAllPosts()
   {
     $sql = "SELECT * FROM tbPosts";
 
@@ -81,8 +81,9 @@ class PostService
       $row['id'],
       $row['userId'],
       $row['title'],
-      $row['description'],
+      $row['description'],  
       $row['image'],
+      $row['liked'],
       $row['commentId'],
       $row['published'],
       $row['createdAt'],

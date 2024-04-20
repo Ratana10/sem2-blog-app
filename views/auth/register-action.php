@@ -79,6 +79,7 @@ if (isset($_POST['btnRegister'])) {
 
       $_SESSION['userId'] = $userId;
       $_SESSION['username'] = $user->getUsername();
+      $_SESSION['image'] = $user->getImage();
 
       header('Location: ../index.php');
       exit();

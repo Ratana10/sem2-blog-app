@@ -11,15 +11,16 @@ class Post
   private $published;
   private $createdAt;
   private $updatedAt;
+  private $liked;
 
-  public function __construct($id = "", $userId = "", $title = "", $description = "", $image = "")
+  public function __construct($id = "", $userId = "", $title = "", $description = "", $image = "", $liked = 0)
   {
     $this->setId($id);
     $this->setUserId($userId);
     $this->setTitle($title);
     $this->setDescription($description);
     $this->setImage($image);
-   
+    $this->setLiked($liked);
   }
 
   public function setId($param)
@@ -62,6 +63,10 @@ class Post
   {
     $this->updatedAt = $param;
   }
+  public function setLiked($param)
+  {
+    $this->liked = $param;
+  }
   // getter
   public function getId()
   {
@@ -102,5 +107,9 @@ class Post
   public function getUpdatedAt()
   {
     return $this->updatedAt;
+  }
+  public function getLiked()
+  {
+    return $this->liked;
   }
 }
