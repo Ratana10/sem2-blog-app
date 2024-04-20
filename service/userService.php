@@ -65,7 +65,7 @@ class UserService
   public function getAllUsers($role = "user")
   {
     // $user = new User();
-    $sql = "SELECT id, username, email, image, role, createdAt, updatedAt
+    $sql = "SELECT id, username, email, password, image, role, createdAt, updatedAt
     FROM tbUsers WHERE role='$role' ";
 
     $users = array();
