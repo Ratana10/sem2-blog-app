@@ -70,7 +70,7 @@ class PostService
   // Test get all post with user
   public function getAllPosts()
   {
-    $sql = "SELECT p.*, u.username 
+    $sql = "SELECT p.*, u.id, u.username, u.image as profile
             FROM tbPosts p INNER JOIN tbUsers u 
             ON p.userId = u.id
             ";
@@ -95,7 +95,7 @@ class PostService
       $row['id'],
       $row['userId'],
       $row['title'],
-      $row['description'],  
+      $row['description'],
       $row['image'],
       $row['liked'],
       $row['commentId'],
@@ -105,6 +105,7 @@ class PostService
     );
 
     $post->getUser()->setUsername($row['username']);
+    $post->getUser()->setImage($row['profile']);
 
     return $post;
   }
@@ -122,7 +123,7 @@ class PostService
       $row['id'],
       $row['userId'],
       $row['title'],
-      $row['description'],  
+      $row['description'],
       $row['image'],
       $row['liked'],
       $row['commentId'],
