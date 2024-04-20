@@ -5,6 +5,14 @@ include('includes/sidebar.php');
 
 ?>
 
+<?php
+include_once "../service/postService.php";
+$postService = new PostService();
+
+$posts = $postService->getAllPosts(1);
+?>
+
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -54,19 +62,12 @@ include('includes/sidebar.php');
                 </thead>
                 <tbody>
                   <?php
-                  include_once "../service/postService.php";
-                  $postService = new PostService();
-
-                  $posts = $postService->getAllPosts(1);
-                  ?>
-
-                  <?php
                   foreach ($posts as $index => $post) {
 
                   ?>
                     <tr>
                       <td><?php echo $index + 1 ?></td>
-                      <td><?php echo $post->getUserId() ?></td>
+                      <td><?php echo $post->getUser()->getUsername() ?></td>
                       <td><?php echo $post->getDescription() ?></td>
                       <td>
                         <img src="../source/images/posts/<?php echo $post->getImage() ?>" alt="image" class="img-fluid " style="height: 50px; width: 100px; object-fit: contain;">
