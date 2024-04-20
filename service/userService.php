@@ -1,6 +1,6 @@
 <?php
-include_once "config/conn.php";
-include_once "entity/user.php";
+include_once __DIR__ . "/../config/conn.php";
+include_once __DIR__ . "/../entity/user.php";
 
 class UserService
 {
@@ -83,9 +83,18 @@ class UserService
 
   public function countUser($role = "user")
   {
-    // $user = new User();
-    $sql = "SELECT 
-    FROM tbUsers WHERE role='$role' ";
+    $sql = "SELECT COUNT(*) AS user_count FROM tbUsers WHERE role='$role' ";
+
+    $result = $this->conn->query($sql);
+
+    if ($result->num_rows <= 0) {
+      return null;
+    }
+
+    $row = $result->fetch_assoc();
+    $totalUser = $row['user_count'];
+
+    return $totalUser;
   }
 
   public function getUserById($userId)

@@ -1,6 +1,6 @@
 <?php
-include_once "config/conn.php";
-include_once "entity/post.php";
+include_once __DIR__ . "/../config/conn.php";
+include_once __DIR__ . "/../entity/post.php";
 
 class PostService
 {
@@ -132,5 +132,22 @@ class PostService
       $row['updatedAt']
     );
     return $post;
+  }
+
+  public function countPost($published = 1)
+  {
+
+    $sql = "SELECT COUNT(*) AS post_count FROM tbPosts WHERE published=$published";
+
+    $result = $this->conn->query($sql);
+
+    if ($result->num_rows <= 0) {
+      return null;
+    }
+
+    $row = $result->fetch_assoc();
+    $totalPost = $row['post_count'];
+
+    return $totalPost;
   }
 }
