@@ -9,10 +9,14 @@ if (session_status() == PHP_SESSION_NONE) {
 
 if (isset($_POST["postBtn"])) {
   $userId = $_SESSION['userId'];
+  echo ("user id " . $userId);
   $description = $_POST['description'];
-  $public = $_POST['public'];
+  echo($description);
 
+
+  $postService = new PostService();
   $image = $_FILES['image']['name'];
+ 
   // check if client upload image 
   if (!empty($image)) {
     $image = $_FILES['image']['name'];
@@ -21,15 +25,12 @@ if (isset($_POST["postBtn"])) {
     move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $_FILES['image']['name']);
   }
 
-  $postService = new PostService();
-
   if (!empty($description) || !empty($image)){
     header("Location: index.php");
-    $post = new Post(null, $userId, null, $description, $image, 0, $public);
+    $post = new Post(null, $userId, null, $description, $image);
     $postService->createPost($post);
     
   }else{
     header("Location: postPage.php");
   }
-
 }
