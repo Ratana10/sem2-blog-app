@@ -100,3 +100,29 @@ if ($conn->query($sql) === TRUE) {
   </script>
   ";
 }
+
+
+// create table Setting
+$sql = "CREATE TABLE IF NOT EXISTS tbSettings(
+  id int(6) AUTO_INCREMENT PRIMARY KEY,
+  name NVARCHAR(50) NOT NULL,
+  image NVARCHAR(255) NULL,
+  createdAt TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NULL DEFAULT NULL
+);";
+
+// //-- Define created_at column with TIMESTAMP data type and default value
+
+if ($conn->query($sql) === TRUE) {
+  echo "
+    <script>
+      console.log('setting posts created successfully');
+    </script>
+  ";
+} else {
+  echo "
+  <script>
+    console.log('error creating setting  . $conn->error  .');
+  </script>
+  ";
+}

@@ -46,7 +46,7 @@ $posts = $postService->getAllPosts(1);
               </div>
             </div>
 
-            <div class="card-body table-responsive p-0 table-striped " style="height: 600px;">
+            <div class="card-body table-responsive p-0 table-striped " style="height: 625px;">
               <table class="table table-head-fixed text-nowrap">
                 <thead>
                   <tr>
