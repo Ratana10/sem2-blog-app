@@ -53,7 +53,7 @@ class UserService
     $sql = " UPDATE tbUsers SET 
       username = '" . $user->getUsername() . "',
       email    = '" . $user->getEmail() . "',
-      image    = '" . $user->getImage() . "',
+      image    = '" . $user->getImage() . "'
       WHERE id = " . $user->getId();
 
     if (!$this->conn->query($sql)) {
@@ -160,5 +160,23 @@ class UserService
       $row['updatedAt']
     );
     return $user;
+  }
+
+  public function updateUsername($userId, $username){
+    $sql = "UPDATE tbUsers SET username='$username' WHERE id=$userId ";
+
+    if (!$this->conn->query($sql)) {
+      return false;
+    }
+    return true;
+  }
+
+  public function updateEmail($userId, $email){
+    $sql = "UPDATE tbUsers SET email='$email' WHERE id=$userId ";
+
+    if (!$this->conn->query($sql)) {
+      return false;
+    }
+    return true;
   }
 }

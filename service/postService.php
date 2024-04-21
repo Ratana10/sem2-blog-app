@@ -70,7 +70,8 @@ class PostService
   // Test get all post with user
   public function getAllPosts()
   {
-    $sql = "SELECT p.*, u.id, u.username, u.image as profile
+    $sql = "SELECT p.id as postId, p.userId, p.title, p.description, p.image, p.liked, p.commentId, p.published, p.createdAt, p.updatedAt, 
+            u.id, u.username, u.image as profile
             FROM tbPosts p INNER JOIN tbUsers u 
             ON p.userId = u.id
             ";
@@ -89,10 +90,22 @@ class PostService
 
     return $posts;
   }
+
+  public function deletePost($postId)
+  {
+    $sql = "DELETE FROM tbPosts WHERE id=$postId ";
+    if (!$this->conn->query($sql)) {
+      // fail insertion
+      return false;
+    }
+
+    return true;
+  }
+
   private function fetchPostWithUser($row)
   {
     $post = new Post(
-      $row['id'],
+      $row['postId'],
       $row['userId'],
       $row['title'],
       $row['description'],

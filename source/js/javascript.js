@@ -6,7 +6,15 @@ $(document).ready(function () {
   $('#floatingImage').change(function () {
     previewImage(this);
   });
-  console.log("Testing")
+
+  $('#profileUpload').change(function () {
+    previewProfile(this);
+  });
+
+  $('.btnCloseProfile').click(function () {
+    location.reload(); // Reload the page
+  });
+
 });
 
 function previewImage(input) {
@@ -22,6 +30,28 @@ function previewImage(input) {
     $('#imagePreview').hide();
   }
 }
+
+var previousImageSrc;
+
+function previewProfile(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      previousImageSrc = $('#profilePreview').attr('src');
+
+      $('#profilePreview').attr('src', e.target.result).show();
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    $('#profilePreview').attr('src', previousImageSrc).show();
+
+  }
+}
+
+
 
 function validatePassword() {
   var password = document.getElementById("floatingPassword").value;

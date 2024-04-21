@@ -62,31 +62,36 @@ $posts = $postService->getAllPosts(1);
                 </thead>
                 <tbody>
                   <?php
-                  foreach ($posts as $index => $post) {
+                  if (!$posts) {
+                    echo '<tr><td colspan="8" class="text-center">No data found</td></tr>';
+                  } else {
+
+                    foreach ($posts as $index => $post) {
 
                   ?>
-                    <tr>
-                      <td><?php echo $index + 1 ?></td>
-                      <td><?php echo $post->getUser()->getUsername() ?></td>
-                      <td><?php echo $post->getDescription() ?></td>
-                      <td>
-                        <img src="../source/images/posts/<?php echo $post->getImage() ?>" alt="image" class="img-fluid " style="height: 50px; width: 100px; object-fit: contain;">
-                      </td>
-                      <td>
-                        <?php echo 10 ?></span>
-                      </td>
-                      <td>
-                        <?php echo 'Public' ?></span>
-                      </td>
-                      <td><?php echo $post->getCreatedAt() ?></td>
-                      <td>
-                        <button class="btn btn-danger">
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </td>
-                    </tr>
+                      <tr>
+                        <td><?php echo $index + 1 ?></td>
+                        <td><?php echo $post->getUser()->getUsername() ?></td>
+                        <td><?php echo $post->getDescription() ?></td>
+                        <td>
+                          <img src="../source/images/posts/<?php echo $post->getImage() ?>" alt="image" class="img-fluid " style="height: 50px; width: 100px; object-fit: contain;">
+                        </td>
+                        <td>
+                          <?php echo 10 ?></span>
+                        </td>
+                        <td>
+                          <?php echo 'Public' ?></span>
+                        </td>
+                        <td><?php echo $post->getCreatedAt() ?></td>
+                        <td>
+                          <button class="btn btn-danger delete-post" data-post-id="<?php echo $post->getId() ?>" data-toggle="modal" data-target="#deletePostModal">
+                            <i class="fa-solid fa-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
 
                   <?php
+                    }
                   }
                   ?>
                 </tbody>
@@ -107,9 +112,34 @@ $posts = $postService->getAllPosts(1);
       </div>
 
     </div><!-- /.container-fluid -->
+    <div>
+
+      <!-- Modal -->
+      <div class="modal fade delete-post" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deletePostModalLabel">Delete Post</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to delete this post ?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary confirmDeletePost" data-dismiss="modal">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <!-- /.content -->
 </div>
+
+
 
 <?php
 include('includes/footer.php');
