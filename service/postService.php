@@ -89,6 +89,28 @@ class PostService
 
     return $posts;
   }
+  public function getmyPosts($userid)
+  {
+    $sql = "SELECT p.*, u.id, u.username, u.image as profile
+            FROM tbPosts p INNER JOIN tbUsers u 
+            ON p.userId = u.id
+            WHERE u.id = $userid 
+            ";
+
+    $result = $this->conn->query($sql);
+    if ($result->num_rows === 0) {
+      return false;
+    }
+
+    $posts = array();
+
+    while ($row = $result->fetch_assoc()) {
+      $post = $this->fetchPostWithUser($row);
+      $posts[] = $post; // Add the post to the array
+    }
+
+    return $posts;
+  }
   private function fetchPostWithUser($row)
   {
     $post = new Post(
