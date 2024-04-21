@@ -4,6 +4,16 @@
   height: 40px;
 }
 
+.profile{ 
+  border:  1px solid rgb(255, 255, 255);
+  position: relative;
+  display: block;
+  margin: auto;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 
 .avatar{
   width: 40px;
@@ -59,3 +69,55 @@
   border-radius: 8px;
   vertical-align: middle;
 }
+
+
+/* Post page */
+   .post-form {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #007bff;
+}
+
+.custom-file-label::after {
+  content: "Browse";
+}
+
+.image-preview-container {
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 8px;
+  position: relative;
+  /* padding-right: 20px; */
+}
+
+.image-preview {
+  width: 100%;
+  object-fit: contain;
+  display: none; /* Changed from block to none */
+  border-radius: 8px;
+  height: 450px; /* Increased height for larger preview */
+  
+}
+
+.custom-file-input {
+  cursor: pointer;
+}
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+  content: "Browse";
+}
+
+ 

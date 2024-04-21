@@ -66,7 +66,7 @@
       </div>
       <div class="modal-body">
         <div class="post-form">
-          <form action="post-action.php" method="post" enctype="multipart/form-data">
+          <form action="post-action11.php" method="post" enctype="multipart/form-data">
             <div class="form-group text-center">
               <img src="https://via.placeholder.com/80" class="rounded-circle profile-pic mb-3" alt="Profile Picture">
               <div>
