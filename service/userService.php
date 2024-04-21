@@ -53,7 +53,7 @@ class UserService
     $sql = " UPDATE tbUsers SET 
       username = '" . $user->getUsername() . "',
       email    = '" . $user->getEmail() . "',
-      image    = '" . $user->getImage() . "',
+      image    = '" . $user->getImage() . "'
       WHERE id = " . $user->getId();
 
     if (!$this->conn->query($sql)) {

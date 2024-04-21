@@ -37,6 +37,11 @@
             </a>
           </li>
           <li>
+            <a class="dropdown-item" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#updateProfileModal">
+              <span><i class="fa-solid fa-gear"></i></span>Update Profile
+            </a>
+          </li>
+          <li>
             <a class="dropdown-item" href="logout.php">
               <span><i class="fa-solid fa-right-from-bracket"></i></span>Logout
             </a>
