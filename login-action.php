@@ -34,15 +34,21 @@ if (isset($_POST['btnLogin'])) {
 
     if ($user) {
       // verify
-      $_SESSION['userId'] = $user->getId();
-      $_SESSION['username'] = $username;
-      $_SESSION['image'] = $user->getImage();
+     
 
       if ($user->getRole() == "user") {
+        $_SESSION['userId'] = $user->getId();
+        $_SESSION['username'] = $username;
+        $_SESSION['image'] = $user->getImage();
+
         header("Location: index.php");
         exit();
       }
       if ($user->getRole() == "admin") {
+        
+        $_SESSION['userId'] = $user->getId();
+        $_SESSION['username'] = $username;
+        $_SESSION['image'] = $user->getImage();
         header("Location: admin/index.php");
         exit();
       } else {

@@ -1,7 +1,7 @@
 <nav class="navbar fixed-top  navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img class="logo-img rounded logo-img" src="source/images/logo/Linkin.png" alt="">
+      <img class="logo-img rounded" src="source/images/logo/Linkin.png" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span><i class="fa-solid fa-bars"></i></span>

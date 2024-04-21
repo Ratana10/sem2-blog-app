@@ -5,14 +5,6 @@ include('includes/sidebar.php');
 
 ?>
 
-<?php
-include_once "../service/postService.php";
-$postService = new PostService();
-
-$posts = $postService->getAllPosts(1);
-?>
-
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -20,7 +12,7 @@ $posts = $postService->getAllPosts(1);
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Post Data</h1>
+          <h1 class="m-0">Setting</h1>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -51,35 +43,41 @@ $posts = $postService->getAllPosts(1);
                 <thead>
                   <tr>
                     <th>NO</th>
-                    <th>Username</th>
-                    <th>Text</th>
-                    <th>Image</th>
-                    <th>Liked</th>
-                    <th>Public</th>
+                    <th>App Name</th>
+                    <th>Logo</th>
+                    <th>Status</th>
                     <th>CreatedAt</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  foreach ($posts as $index => $post) {
+                  include_once "../service/settingService.php";
+                  $settingService = new SettingService();
+
+                  $settings = $settingService->getAllSetting();
+                  ?>
+
+                  <?php
+                  foreach ($settings as $index => $setting) {
 
                   ?>
                     <tr>
                       <td><?php echo $index + 1 ?></td>
-                      <td><?php echo $post->getUser()->getUsername() ?></td>
-                      <td><?php echo $post->getDescription() ?></td>
+                      <td><?php echo $setting->getName() ?></td>
                       <td>
-                        <img src="../source/images/posts/<?php echo $post->getImage() ?>" alt="image" class="img-fluid " style="height: 50px; width: 100px; object-fit: contain;">
+                        <img src="../source/images/logo/<?php echo $setting->getLogo() ?>" alt="image" class="img-fluid " style="height: 40px; width: 40px; object-fit: contain;">
                       </td>
                       <td>
-                        <?php echo 10 ?></span>
+                        <span class="badge bg-success">
+                          <?php echo $setting->getStatus() ? "true" : "false"; ?>
+                        </span>
                       </td>
+                      <td><?php echo $setting->getCreatedAt() ?></td>
                       <td>
-                        <?php echo 'Public' ?></span>
-                      </td>
-                      <td><?php echo $post->getCreatedAt() ?></td>
-                      <td>
+                        <button class="btn btn-primary">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
                         <button class="btn btn-danger">
                           <i class="fa-solid fa-trash"></i>
                         </button>

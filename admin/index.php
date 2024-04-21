@@ -5,6 +5,30 @@ include('includes/sidebar.php');
 
 ?>
 
+<?php
+
+include_once "../service/userService.php";
+
+$userService = new UserService();
+
+$totalUser = $userService->countUser();
+
+$totalAdmin = $userService->countUser("admin");
+?>
+
+<?php
+
+include_once "../service/postService.php";
+
+$postService = new PostService();
+
+$totalPost = $postService->countPost();
+
+$totalUnpublished = $postService->countPost(0);
+
+
+?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -33,59 +57,59 @@ include('includes/sidebar.php');
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-warning">
+          <div class="small-box bg-info">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $totalAdmin ?></h3>
 
               <p>Admin</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa-solid fa-user-tie"></i>
             </div>
           </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-warning">
+          <div class="small-box bg-danger">
             <div class="inner">
-              <h3>44</h3>
-
+              <h3><?php echo $totalUser ?></h3>
               <p>User Registrations</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa-solid fa-user"></i>
             </div>
           </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-warning">
+          <div class="small-box bg-primary">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $totalPost ?></h3>
 
-              <p>User Registrations</p>
+              <p>Total Published Post</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa-solid fa-tags"></i>
             </div>
           </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-warning">
+          <div class="small-box bg-secondary">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $totalUnpublished ?></h3>
 
-              <p>User Registrations</p>
+              <p>Total UnPublished Post</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa-regular fa-eye-slash"></i>
             </div>
           </div>
         </div>
+
 
       </div>
       <!-- /.row -->

@@ -1,4 +1,4 @@
-<?php require ('config/check-session.php') ?>
+<?php require('config/check-session.php') ?>
 
 
 <!-- header -->
@@ -31,12 +31,12 @@ $posts = $postService->getAllPosts();
         <div class="card-body">
           <div class="mb-2">
             <div class="row">
-              <div class="col-8 d-flex align-items-center justify-content-start g-2">
+              <div class="col-8 d-flex align-items-center justify-content-start g-2 ">
                 <div class="mx-1">
-                  <img src="source/images/users/under.jpeg" class="img-fluid profile" alt="profile" />
+                  <img src="source/images/users/<?php echo $post->getUser()->getImage(); ?>" class="img-fluid profile" alt="profile" />
                 </div>
                 <div class="user-acc mx-1">
-                  <h5 class="card-title">N1T</h5>
+                  <h5 class="card-title profile-name"><?php echo $post->getUser()->getUsername(); ?></h5>
                 </div>
               </div>
               <div class="col-4 d-flex align-items-center justify-content-end">

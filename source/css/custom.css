@@ -1,0 +1,21 @@
+.text-red{
+  color: red;
+}
+
+.profile-name{
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+
+.profile{
+  border:  1px solid grey;
+  position: relative;
+  display: block;
+  margin: auto;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
