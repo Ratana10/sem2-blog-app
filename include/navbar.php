@@ -27,7 +27,7 @@
             </a>
           </li>
           <li>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="postPage.php">
               <span><i class="fa-regular fa-square-plus"></i></span>Create Post
             </a>
           </li>
