@@ -18,15 +18,16 @@ class PostService
     */
   public function createPost($post)
   {
-    $sql = " INSERT INTO tbPosts(userId, title, description, image) VALUES (
+    $sql = " INSERT INTO tbPosts(userId, title, description, image, liked, public) VALUES (
       '" . $post->getUserId() . "',
       '" . $post->getTitle() . "',
       '" . $post->getDescription() . "',
-      '" . $post->getImage() . "'
+      '" . $post->getImage() . "',
+      '" . $post->getLiked() . "',
+      '" . $post->getPublic() . "'
     )";
 
-    if (!$this->conn
-      ->query($sql)) {
+    if (!$this->conn->query($sql)) {
       // fail insertion
       return false;
     }
@@ -70,7 +71,7 @@ class PostService
   // Test get all post with user
   public function getAllPosts()
   {
-    $sql = "SELECT p.id as postId, p.userId, p.title, p.description, p.image, p.liked, p.commentId, p.published, p.createdAt, p.updatedAt, 
+    $sql = "SELECT p.id as postId, p.userId, p.title, p.description, p.image, p.liked, p.commentId, p.public, p.createdAt, p.updatedAt, 
             u.id, u.username, u.image as profile
             FROM tbPosts p INNER JOIN tbUsers u 
             ON p.userId = u.id
@@ -112,7 +113,7 @@ class PostService
       $row['image'],
       $row['liked'],
       $row['commentId'],
-      $row['published'],
+      $row['public'],
       $row['createdAt'],
       $row['updatedAt']
     );

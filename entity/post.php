@@ -10,13 +10,13 @@ class Post
   private $image;
   private $slug;
   private $commentId;
-  private $published;
+  private $public;
   private $createdAt;
   private $updatedAt;
   private $liked;
   private $user;
 
-  public function __construct($id = "", $userId = "", $title = "", $description = "", $image = "", $liked = 0)
+  public function __construct($id = "", $userId = "", $title = "", $description = "", $image = "", $liked = 0, $public=1)
   {
     $this->setId($id);
     $this->setUserId($userId);
@@ -24,6 +24,7 @@ class Post
     $this->setDescription($description);
     $this->setImage($image);
     $this->setLiked($liked);
+    $this->setPublic($public);
     $this->setUser();
   }
 
@@ -55,9 +56,9 @@ class Post
   {
     $this->commentId = $param;
   }
-  public function setPublished($param)
+  public function setPublic($param)
   {
-    $this->published = $param;
+    $this->public = $param;
   }
   public function setCreatedAt($param)
   {
@@ -100,9 +101,9 @@ class Post
   {
     return $this->commentId;
   }
-  public function getPublished()
+  public function getPublic()
   {
-    return $this->published;
+    return $this->public;
   }
   public function getCreatedAt()
   {
