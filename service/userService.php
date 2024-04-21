@@ -161,4 +161,22 @@ class UserService
     );
     return $user;
   }
+
+  public function updateUsername($userId, $username){
+    $sql = "UPDATE tbUsers SET username='$username' WHERE id=$userId ";
+
+    if (!$this->conn->query($sql)) {
+      return false;
+    }
+    return true;
+  }
+
+  public function updateEmail($userId, $email){
+    $sql = "UPDATE tbUsers SET email='$email' WHERE id=$userId ";
+
+    if (!$this->conn->query($sql)) {
+      return false;
+    }
+    return true;
+  }
 }
