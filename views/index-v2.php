@@ -48,9 +48,10 @@ foreach ($posts as $post) {
               </div>
             </div>
             <div class="col-4 d-flex align-items-center justify-content-end">
-              <div class="icon d-flex gap-2">
+              <div class="icon d-flex gap-2"  >
                 <span class="pe-2"> <?php echo $post->getLiked(); ?> </span>
-                <span><i class="fa-solid fa-heart"></i></span>
+                <span class="like-button" id="likeButton"><i class="fa-solid fa-heart"></i></span>
+
                 <span class="pe-2">1</span>
                 <span><i class="fa-regular fa-comment"></i></span>
               </div>
@@ -80,6 +81,25 @@ foreach ($posts as $post) {
     }
     ?>
 </div>
+
+<script>
+  // Get the like button element
+  const likeButton = document.getElementById('likeButton');
+
+  // Add a click event listener to the like button
+  likeButton.addEventListener('click', function() {
+    // Call your like function here
+    likeFunction();
+  });
+
+  // Example like function
+  function likeFunction() {
+    // This is just an example, you can replace this with your actual like logic
+    <?php
+      echo $post->getDescription();
+    ?>
+  }
+</script>
 
 <!-- footer -->
 <?php include('./include/footer.php') ?>
