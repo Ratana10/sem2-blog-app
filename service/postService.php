@@ -131,6 +131,24 @@ class PostService
     }
     return true;
   }
+
+  public function countLike($postId)
+  {
+    $sql = "SELECT liked FROM tbPosts WHERE id=$postId";
+
+    $result = $this->conn->query($sql);
+
+
+    if ($result->num_rows <= 0) {
+      return null;
+    }
+
+    $row = $result->fetch_assoc();
+    $totalLike = $row['liked'];
+
+    return $totalLike;
+  }
+
   private function fetchToPost($row)
   {
     $post = new Post(

@@ -15,6 +15,29 @@ $(document).ready(function () {
     location.reload(); // Reload the page
   });
 
+  // Liked
+  $('.like-icon').click(function () {
+    var likeIcon = $(this);
+    var postId = likeIcon.data("postId");
+    var likedCountSpan = likeIcon.siblings(".liked-count")
+
+    $.ajax({
+      url: "like-action.php",
+      type: "POST",
+      data: {
+        postId: postId
+      },
+      success: function (data) {
+        console.log("data", data);
+        // update like
+        likedCountSpan.text(data); // Assuming data contains the updated liked count
+
+        // make red color
+        likeIcon.find("i").css("color", data === '1' ? "red" : "#000000");
+      },
+    })
+    console.log("Test", likedCountSpan)
+  })
 });
 
 function previewImage(input) {
@@ -70,7 +93,7 @@ function openPostModal() {
   $('#postModal').modal('show');
 }
 
-$("#image").change(function() {
+$("#image").change(function () {
   readURL(this);
 });
 
@@ -78,11 +101,12 @@ function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
 
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       $('.image-preview').attr('src', e.target.result).show();
     };
 
     reader.readAsDataURL(input.files[0]);
   }
 }
+
 

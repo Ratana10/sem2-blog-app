@@ -41,10 +41,10 @@ $posts = $postService->getAllPosts();
               </div>
               <div class="col-4 d-flex align-items-center justify-content-end">
                 <div class="icon d-flex gap-2">
-                  <span class="pe-2 liked-count"> <?php echo $post->getLiked(); ?> </span>
-                  <span id="like-icon-<?php echo $post->getId(); ?>" class="like-icon" data-post-id="<?php echo $post->getId(); ?>">
-                    <i class="fa-solid fa-heart"></i>
-                  </span>
+                  <span class="pe-2"> <?php echo $post->getLiked(); ?> </span>
+                  <span><i class="fa-solid fa-heart"></i></span>
+                  <span class="pe-2">1</span>
+                  <span><i class="fa-regular fa-comment"></i></span>
                 </div>
               </div>
             </div>
@@ -104,30 +104,30 @@ $posts = $postService->getAllPosts();
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Username</label>
-                <input type="text" class="form-control" value="<?php echo $user->getUsername() ?>" name="username">
+                <input type="text" class="form-control"  value="<?php echo $user->getUsername() ?>" name="username">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Email address</label>
-                <input type="email" class="form-control" value="<?php echo $user->getEmail() ?>" name="email">
+                <input type="email" class="form-control"  value="<?php echo $user->getEmail() ?>" name="email">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Old Password</label>
-                <input type="password" class="form-control" placeholder="oldPassword">
+                <input type="password" class="form-control"  placeholder="oldPassword">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">New Password</label>
-                <input type="password" class="form-control" placeholder="user1" name="password">
+                <input type="password" class="form-control"  placeholder="user1" name="password">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" placeholder="user1" name="password2">
+                <input type="password" class="form-control"  placeholder="user1" name="password2">
               </div>
 
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btnCloseProfile" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="btnUpdate">Update</button>
+            <button  type="button" class="btn btn-secondary btnCloseProfile" data-bs-dismiss="modal">Close</button>
+            <button  type="submit" class="btn btn-primary" name="btnUpdate">Update</button>
           </div>
         </form>
       </div>
