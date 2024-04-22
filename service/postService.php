@@ -12,10 +12,6 @@ class PostService
     $this->conn = $conn;
   }
 
-  /*
-    INSERT INTO `tbPosts` (`id`, `userId`, `title`, `description`, `image`, `liked`, `commentId`, `published`, `createdAt`, `updatedAt`) 
-    VALUES (NULL, '1', '11111', '11111111', NULL, '0', NULL, '0', current_timestamp(), NULL);
-    */
   public function createPost($post)
   {
     $sql = " INSERT INTO tbPosts(userId, title, description, image, liked, public) VALUES (
@@ -71,7 +67,7 @@ class PostService
   // Test get all post with user
   public function getAllPosts()
   {
-    $sql = "SELECT p.id as postId, p.userId, p.title, p.description, p.image, p.liked, p.commentId, p.public, p.createdAt, p.updatedAt, 
+    $sql = "SELECT p.id as postId, p.userId, p.title, p.description, p.image, p.liked, p.public, p.createdAt, p.updatedAt, 
             u.id, u.username, u.image as profile
             FROM tbPosts p INNER JOIN tbUsers u 
             ON p.userId = u.id
@@ -112,7 +108,6 @@ class PostService
       $row['description'],
       $row['image'],
       $row['liked'],
-      $row['commentId'],
       $row['public'],
       $row['createdAt'],
       $row['updatedAt']
@@ -131,6 +126,24 @@ class PostService
     }
     return true;
   }
+
+  public function countLike($postId)
+  {
+    $sql = "SELECT liked FROM tbPosts WHERE id=$postId";
+
+    $result = $this->conn->query($sql);
+
+
+    if ($result->num_rows <= 0) {
+      return null;
+    }
+
+    $row = $result->fetch_assoc();
+    $totalLike = $row['liked'];
+
+    return $totalLike;
+  }
+
   private function fetchToPost($row)
   {
     $post = new Post(
@@ -140,7 +153,6 @@ class PostService
       $row['description'],
       $row['image'],
       $row['liked'],
-      $row['commentId'],
       $row['published'],
       $row['createdAt'],
       $row['updatedAt']
