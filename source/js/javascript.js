@@ -65,7 +65,29 @@ $(document).ready(function () {
       }
     })
   });
+
+  $('.view-comments').click(function (event) {
+    var postId = $(this).data('post-id');
+    fetchComments(postId);
+
+    // Show the modal
+    // $('#commentsModal').modal('show');
+  });
+
+  function fetchComments(postId) {
+    console.log("test");
+    $.ajax({
+      url: "get-comments.php",
+      type: "GET",
+      data: { postId: postId },
+      success: function (response) {
+        console.log(response);
+      }
+    })
+  }
 });
+
+
 
 function previewImage(input) {
   if (input.files && input.files[0]) {

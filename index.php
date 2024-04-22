@@ -61,7 +61,7 @@ $commentService = new CommentService();
 
                     <span class="pe-2 comment-count" data-post-id="<?php echo $post->getId(); ?>"> <?php echo $totalComments; ?>
                     </span>
-                    <span id="comment-icon-<?php echo $post->getId(); ?>" class="comment-icon" data-post-id="<?php echo $post->getId(); ?>" data-bs-toggle="modal" data-bs-target="#commentModal">
+                    <span id="comment-icon-<?php echo $post->getId(); ?>" class="comment-icon view-comments" data-post-id="<?php echo $post->getId(); ?>" data-bs-toggle="modal" data-bs-target="#commentModal">
                       <i class="fa-regular fa-comment"></i>
                     </span>
                   </div>
@@ -104,10 +104,11 @@ $commentService = new CommentService();
 
   ?>
 
+
  <?php require "updateProfileModal.php" ?>
  <?php require "commentModelPage.php" ?>
 
-  
 
-<!-- footer -->
-<?php include('include/footer.php') ?>
+
+  <!-- footer -->
+  <?php include('include/footer.php') ?>
