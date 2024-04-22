@@ -9,7 +9,6 @@ class Post
   private $description;
   private $image;
   private $slug;
-  private $commentId;
   private $public;
   private $createdAt;
   private $updatedAt;
@@ -52,10 +51,9 @@ class Post
   {
     $this->slug = $param;
   }
-  public function setCommentId($param)
-  {
-    $this->commentId = $param;
-  }
+
+  
+
   public function setPublic($param)
   {
     $this->public = $param;
@@ -97,10 +95,9 @@ class Post
   {
     return $this->slug;
   }
-  public function getCommentId()
-  {
-    return $this->commentId;
-  }
+
+  
+  
   public function getPublic()
   {
     return $this->public;
