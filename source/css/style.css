@@ -121,3 +121,40 @@
 }
 
  
+
+
+/* Comment page */
+.modal-header {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #dee2e6;
+}
+.modal-title {
+  color: #495057;
+}
+.modal-body {
+  background-color: #fff;
+}
+.comment {
+  padding: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.comment p {
+  margin: 0;
+  color: #495057;
+}
+.comment a {
+  color: #007bff;
+}
+.form-control {
+  margin-top: 15px;
+}
+.modal-footer {
+  background-color: #f7f7f7;
+  border-top: 1px solid #dee2e6;
+}
