@@ -38,6 +38,22 @@ $(document).ready(function () {
     })
     console.log("Test", likedCountSpan)
   })
+
+  // 
+  $('.btn-comment').click(function (event) {
+    var commentText = $(this).siblings("input[type='text']").val(); // Get comment text
+    var postId = $(this).data("postId");
+    console.log("commenting", commentText + postId);
+
+    $.ajax({
+      url: "comment-action.php",
+      type: "POST",
+      data: { postId: postId, content: commentText },
+      success: function(response){
+        console.log("response", response);
+      }
+    })
+  })
 });
 
 function previewImage(input) {

@@ -46,28 +46,7 @@ if ($conn->query($sql) === TRUE) {
   ";
 }
 
-// create table comments
-$sql = "CREATE TABLE IF NOT EXISTS tbComments(
-  id int(6) AUTO_INCREMENT PRIMARY KEY,
-  userid int(6) NOT NULL,
-  description NVARCHAR(255) NOT NULL,
-  createdAt TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  updatedAt TIMESTAMP NULL DEFAULT NULL
-);";
 
-if ($conn->query($sql) === TRUE) {
-  echo "
-    <script>
-      console.log('table comments created successfully');
-    </script>
-  ";
-} else {
-  echo "
-  <script>
-    console.log('error creating table comments . $conn->error  .');
-  </script>
-  ";
-}
 
 // create table posts
 $sql = "CREATE TABLE IF NOT EXISTS tbPosts(
@@ -77,12 +56,10 @@ $sql = "CREATE TABLE IF NOT EXISTS tbPosts(
   description NVARCHAR(255) NULL,
   image NVARCHAR(255) NULL,
   liked INT(6) NOT NULL DEFAULT 0,
-  commentId int(6) NULL,
   public TINYINT NOT NULL DEFAULT 1,
   createdAt TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP NULL DEFAULT NULL,
-  CONSTRAINT FK_UserPost FOREIGN KEY (userId) REFERENCES tbUsers(id),
-	CONSTRAINT FK_CommentPost FOREIGN KEY (commentId) REFERENCES tbComments(id)
+  CONSTRAINT FK_UserPost FOREIGN KEY (userId) REFERENCES tbUsers(id)
 );";
 
 // //-- Define created_at column with TIMESTAMP data type and default value
@@ -101,6 +78,31 @@ if ($conn->query($sql) === TRUE) {
   ";
 }
 
+// create table comments
+$sql = "CREATE TABLE IF NOT EXISTS tbComments(
+  id int(6) AUTO_INCREMENT PRIMARY KEY,
+  userId int(6) NOT NULL,
+  postId int(6) NOT NULL,
+  content NVARCHAR(255) NOT NULL,
+  createdAt TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NULL DEFAULT NULL,
+  CONSTRAINT FK_UserComment FOREIGN KEY (userId) REFERENCES tbUsers(id),
+  CONSTRAINT FK_PostComment FOREIGN KEY (postId) REFERENCES tbPosts(id)
+);";
+
+if ($conn->query($sql) === TRUE) {
+  echo "
+    <script>
+      console.log('table comments created successfully');
+    </script>
+  ";
+} else {
+  echo "
+  <script>
+    console.log('error creating table comments . $conn->error  .');
+  </script>
+  ";
+}
 
 // create table Setting
 $sql = "CREATE TABLE IF NOT EXISTS tbSettings(
