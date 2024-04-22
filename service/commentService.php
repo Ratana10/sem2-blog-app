@@ -27,4 +27,17 @@ class CommentService
 
     return $this->conn->insert_id;
   }
+
+  public function countComments($postId) {
+    $sql = "SELECT COUNT(*) AS comment_count FROM tbComments WHERE postId = $postId";
+
+    $result = $this->conn->query($sql);
+
+    if ($result->num_rows === 1) {
+      $row = $result->fetch_assoc();
+      return $row['comment_count'];
+    } else {
+      return 0;
+    }
+  }
 }

@@ -21,6 +21,8 @@ $(document).ready(function () {
     var postId = likeIcon.data("postId");
     var likedCountSpan = likeIcon.siblings(".liked-count")
 
+    console.log("testlike", likedCountSpan)
+
     $.ajax({
       url: "like-action.php",
       type: "POST",
@@ -28,7 +30,6 @@ $(document).ready(function () {
         postId: postId
       },
       success: function (data) {
-        console.log("data", data);
         // update like
         likedCountSpan.text(data); // Assuming data contains the updated liked count
 
@@ -39,21 +40,31 @@ $(document).ready(function () {
     console.log("Test", likedCountSpan)
   })
 
+  function updateCommentCount(postId, newCommentCount) {
+    // Find the specific comment count element related to the submitted comment
+    var commentedCountSpan = $('.comment-count[data-post-id="' + postId + '"]');
+
+    // Update the text content of the comment count element
+    commentedCountSpan.text(newCommentCount);
+  }
+
   // 
   $('.btn-comment').click(function (event) {
-    var commentText = $(this).siblings("input[type='text']").val(); // Get comment text
-    var postId = $(this).data("postId");
-    console.log("commenting", commentText + postId);
+    var commentIcon = $(this);
+    var commentText = commentIcon.siblings("input[type='text']").val(); // Get comment text
+    var postId = commentIcon.data("postId");
 
     $.ajax({
       url: "comment-action.php",
       type: "POST",
       data: { postId: postId, content: commentText },
-      success: function(response){
-        console.log("response", response);
+      success: function (response) {
+        updateCommentCount(postId, response);
+        commentIcon.siblings("input[type='text']").val("");
+
       }
     })
-  })
+  });
 });
 
 function previewImage(input) {

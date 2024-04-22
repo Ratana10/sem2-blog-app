@@ -15,6 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $result = $commentService->createComment($comment);
  
   if($result){
-    echo "commented";
+    echo $commentService->countComments($postId);
   }
 }

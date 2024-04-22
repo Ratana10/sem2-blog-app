@@ -15,6 +15,14 @@ $postService = new PostService();
 
 $posts = $postService->getAllPosts();
 
+
+?>
+
+<?php
+include('service/commentService.php');
+
+$commentService = new CommentService();
+
 ?>
 <!-- Contain -->
 <!-- Card Section -->
@@ -25,6 +33,8 @@ $posts = $postService->getAllPosts();
     echo '<p>No data found</p>';
   } else {
     foreach ($posts as $post) {
+
+      $totalComments = $commentService->countComments($post->getId());
   ?>
 
 
@@ -48,9 +58,11 @@ $posts = $postService->getAllPosts();
                     <span id="like-icon-<?php echo $post->getId(); ?>" class="like-icon" data-post-id="<?php echo $post->getId(); ?>">
                       <i class="fa-solid fa-heart"></i>
                     </span>
-                    <span class="pe-2 comment-count">2</span>
+
+                    <span class="pe-2 comment-count" data-post-id="<?php echo $post->getId(); ?>"> <?php echo $totalComments; ?>
+                    </span>
                     <span id="comment-icon-<?php echo $post->getId(); ?>" class="comment-icon" data-post-id="<?php echo $post->getId(); ?>">
-                    <i class="fa-regular fa-comment"></i>
+                      <i class="fa-regular fa-comment"></i>
                     </span>
                   </div>
                 </div>
