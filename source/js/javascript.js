@@ -85,6 +85,7 @@ $(document).ready(function () {
         $("#comment-input").val("");
 
         fetchComments(postId);
+        // 
       }
     })
 
