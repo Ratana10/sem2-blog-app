@@ -6,7 +6,7 @@
           <h5 class="modal-title" id="updateProfileModalLabel">Profile</h5>
           <button type="button" class="btn-close btnCloseProfile" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="update-profile.php" method="post" enctype="multipart/form-data">
+        <form action="update-profile.php" method="post" enctype="multipart/form-data" id="profileUpdateForm">
           <div class="modal-body">
             <div>
               <div class="d-flex justify-content-center mb-3">
@@ -26,7 +26,7 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Old Password</label>
-                <input type="password" class="form-control" placeholder="oldPassword">
+                <input type="password" class="form-control" placeholder="oldPassword" id="oldPassword">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">New Password</label>
@@ -41,7 +41,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary btnCloseProfile" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="btnUpdate">Update</button>
+            <button type="submit" class="btn btn-primary " name="btnUpdate" id="btnUpdateProfile">Update</button>
           </div>
         </form>
       </div>
