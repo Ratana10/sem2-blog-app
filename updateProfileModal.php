@@ -26,15 +26,15 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Old Password</label>
-                <input type="password" class="form-control" placeholder="oldPassword" id="oldPassword">
+                <input type="password" class="form-control" placeholder="Enter old password" id="oldPassword">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">New Password</label>
-                <input type="password" class="form-control" placeholder="user1" name="password">
+                <input type="password" class="form-control" placeholder="Enter new password" name="password">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" placeholder="user1" name="password2">
+                <input type="password" class="form-control" placeholder="Enter new password" name="password2">
               </div>
 
             </div>
