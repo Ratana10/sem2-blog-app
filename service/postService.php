@@ -162,10 +162,10 @@ class PostService
     return $post;
   }
 
-  public function countPost($published = 1)
+  public function countPost($public = 1)
   {
 
-    $sql = "SELECT COUNT(*) AS post_count FROM tbPosts WHERE published=$published";
+    $sql = "SELECT COUNT(*) AS post_count FROM tbPosts WHERE public=$public";
 
     $result = $this->conn->query($sql);
 
