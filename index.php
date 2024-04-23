@@ -26,7 +26,7 @@ $commentService = new CommentService();
 ?>
 <!-- Contain -->
 <!-- Card Section -->
-<div class="container">
+<div class="container" style="margin-top: 100px;">
 
   <?php
   if (!$posts) {
@@ -38,7 +38,7 @@ $commentService = new CommentService();
   ?>
 
 
-      <div class="wrapper d-flex justify-content-center">
+      <div class="wrapper d-flex justify-content-center card-container-<?php echo $post->getId(); ?>">
         <div class="card mb-3">
           <img class="img-fluid" src="source/images/posts/<?php echo $post->getImage(); ?>" style="width: 56rem" class="card-img-top" alt="..." />
           <div class="card-body">
@@ -61,9 +61,27 @@ $commentService = new CommentService();
 
                     <span class="pe-2 comment-count" data-post-id="<?php echo $post->getId(); ?>"> <?php echo $totalComments; ?>
                     </span>
-                    <span id="comment-icon-<?php echo $post->getId(); ?>" class="comment-icon" data-post-id="<?php echo $post->getId(); ?>" data-bs-toggle="modal" data-bs-target="#commentModal">
+                    <span id="comment-icon-<?php echo $post->getId(); ?>" class="comment-icon view-comments" data-post-id="<?php echo $post->getId(); ?>">
                       <i class="fa-regular fa-comment"></i>
                     </span>
+                    <div class="dropdown">
+                      <span class="ms-3 " data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </span>
+
+                      <ul class="dropdown-menu ">
+                        <li>
+                          <a class="dropdown-item edit-post btn" data-post-id="<?php echo $post->getId(); ?>">
+                            <i class="fa-solid fa-pen me-3" style="color: blue;"></i>Edit
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item delete-post btn" data-post-id="<?php echo $post->getId(); ?>">
+                            <i class="fa-solid fa-trash me-3" style="color: red;"></i>Delete
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -77,7 +95,7 @@ $commentService = new CommentService();
             </div>
             <div class="cmt">
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="comment" />
+                <input type="text" class="form-control " placeholder="comment" />
                 <button class="btn btn-info btn-comment" type="button" data-post-id="<?php echo $post->getId(); ?>">
                   <i class="fa-solid fa-paper-plane fa-lg" style="color: #ffffff"></i>
                 </button>
@@ -86,6 +104,7 @@ $commentService = new CommentService();
           </div>
         </div>
       </div>
+
 
   <?php
     }
@@ -104,10 +123,13 @@ $commentService = new CommentService();
 
   ?>
 
- <?php require "updateProfileModal.php" ?>
- <?php require "commentModal.php" ?>
+  <?php require "updateProfileModal.php" ?>
+  <?php require "commentModal.php" ?>
 
-  
+
+</div>
+
+
 
 <!-- footer -->
 <?php include('include/footer.php') ?>

@@ -50,9 +50,13 @@ $(document).ready(function () {
 
   // 
   $('.btn-comment').click(function (event) {
+    console.log("clicked")
     var commentIcon = $(this);
     var commentText = commentIcon.siblings("input[type='text']").val(); // Get comment text
     var postId = commentIcon.data("postId");
+
+
+    console.log("clicked", commentText)
 
     $.ajax({
       url: "comment-action.php",
@@ -65,7 +69,119 @@ $(document).ready(function () {
       }
     })
   });
+
+  $('#submit-comment').click(function (event) {
+    var commentText = $("#comment-input").val();
+
+    var postId = $(this).data('post-id');
+
+
+    $.ajax({
+      url: "comment-action.php",
+      type: "POST",
+      data: { postId: postId, content: commentText },
+      success: function (response) {
+        updateCommentCount(postId, response);
+        $("#comment-input").val("");
+
+        fetchComments(postId);
+        // 
+      }
+    })
+
+  });
+
+  $('.view-comments').click(function (event) {
+    var postId = $(this).data('post-id');
+    fetchComments(postId);
+
+    // Show the modal
+    $('#commentModal').modal('show');
+  });
+
+  function fetchComments(postId) {
+    $.ajax({
+      url: "get-comments.php", // Replace with your comment fetching script
+      type: "GET",
+      data: { postId: postId },
+      success: function (response) {
+        // Parse the response (assuming JSON format)
+        var comments = JSON.parse(response);
+
+        $('#comments-container').html("");
+
+        for (var i = 0; i < comments.length; i++) {
+          var comment = comments[i];
+
+          var commentElement = `
+              <div class="d-flex "  >
+                <div><img src="./source/images/users/${comment.image}" alt="Avatar" class="avatar" ></div>
+                <div class="d-flex flex-column " style="margin-left: 4px;">
+                  <span><strong>${comment.username}</strong></span>
+                  <p>${comment.content}</p>
+                </div>
+              </div>
+              <hr>
+            `;
+          $('#comments-container').append(commentElement);
+
+        }
+
+        $('#submit-comment').attr("data-post-id", postId);
+
+      }
+
+    });
+  }
+
+  $('.edit-post').click(function (event) {
+    var postId = $(this).data("postId");
+    window.location.href = "edit-post.php?id=" + postId;
+
+  });
+
+  $('.delete-post').click(function (e) {
+    var postId = $(this).data("postId");
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success ms-2",
+        cancelButton: "btn btn-danger me-2"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "You want to delete this post?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'delete-post-action.php',
+          type: 'POST',
+          data: {
+            postId: postId
+          },
+          success: function (res) {
+            Swal.fire({
+              title: "Delete Success!",
+              icon: "success"
+            });
+            setTimeout(function () {
+              $(`.card-container-${postId}`).remove();
+            }, 200)
+          }
+        });
+      }
+    });
+  });
 });
+
+
 
 function previewImage(input) {
   if (input.files && input.files[0]) {
@@ -135,5 +251,4 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
-
 

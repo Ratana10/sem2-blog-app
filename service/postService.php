@@ -34,9 +34,9 @@ class PostService
   public function updatePost($post)
   {
     $sql = " UPDATE tbPosts SET
-    title = '" . $post->getTitle() . "',
     description = '" . $post->getDescription() . "',
-    image = '" . $post->getImage() . "'
+    image = '" . $post->getImage() . "',
+    public = " . $post->getPublic() . "
     WHERE id=" . $post->getId();
 
     if (!$this->conn->query($sql)) {
@@ -46,6 +46,22 @@ class PostService
 
     return true;
   }
+
+  public function getPostById($postId)
+  {
+    $sql = "SELECT id, userId, title, description, image, public, liked, createdAt, updatedAt
+    FROM tbPosts WHERE id=$postId";
+
+    $result = $this->conn->query($sql);
+    if ($result->num_rows === 0) {
+      return false;
+    }
+
+    $row = $result->fetch_assoc();
+    $post = $this->fetchToPost($row);
+    return $post;
+  }
+
   public function getAllPostsV1()
   {
     $sql = "SELECT * FROM tbPosts";
@@ -70,7 +86,9 @@ class PostService
     $sql = "SELECT p.id as postId, p.userId, p.title, p.description, p.image, p.liked, p.public, p.createdAt, p.updatedAt, 
             u.id, u.username, u.image as profile
             FROM tbPosts p INNER JOIN tbUsers u 
-            ON p.userId = u.id
+            ON p.userId = u.id 
+            WHERE public=1
+            ORDER BY p.createdAt DESC
             ";
 
     $result = $this->conn->query($sql);
@@ -153,17 +171,17 @@ class PostService
       $row['description'],
       $row['image'],
       $row['liked'],
-      $row['published'],
+      $row['public'],
       $row['createdAt'],
       $row['updatedAt']
     );
     return $post;
   }
 
-  public function countPost($published = 1)
+  public function countPost($public = 1)
   {
 
-    $sql = "SELECT COUNT(*) AS post_count FROM tbPosts WHERE published=$published";
+    $sql = "SELECT COUNT(*) AS post_count FROM tbPosts WHERE public=$public";
 
     $result = $this->conn->query($sql);
 
