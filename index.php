@@ -109,6 +109,9 @@ $commentService = new CommentService();
   <?php require "commentModal.php" ?>
 
 
+</div>
+
+
 
 <!-- footer -->
 <?php include('include/footer.php') ?>

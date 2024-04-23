@@ -68,7 +68,7 @@ include('includes/sidebar.php');
                       <td><?php echo $user->getUsername() ?></td>
                       <td><?php echo $user->getEmail() ?></td>
                       <td>
-                        <img src="../source/images/<?php echo $user->getImage() ?>" alt="image" class="img-fluid " style="height: 50px; width: 100px; object-fit: contain;">
+                        <img src="../source/images/users/<?php echo $user->getImage() ?>" alt="image" class="img-fluid " style="height: 50px; width: 100px; object-fit: contain;">
                       </td>
                       <td>
                         <span class="badge bg-success"><?php echo $user->getRole() ?></span>
@@ -87,7 +87,7 @@ include('includes/sidebar.php');
                 </tbody>
               </table>
             </div>
-            <div class="card-footer clearfix">
+            <!-- <div class="card-footer clearfix">
               <ul class="pagination pagination-sm m-0 float-right">
                 <li class="page-item"><a class="page-link" href="#">«</a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -95,7 +95,7 @@ include('includes/sidebar.php');
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item"><a class="page-link" href="#">»</a></li>
               </ul>
-            </div>
+            </div> -->
           </div>
 
         </div>

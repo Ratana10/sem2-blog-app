@@ -70,7 +70,9 @@ class PostService
     $sql = "SELECT p.id as postId, p.userId, p.title, p.description, p.image, p.liked, p.public, p.createdAt, p.updatedAt, 
             u.id, u.username, u.image as profile
             FROM tbPosts p INNER JOIN tbUsers u 
-            ON p.userId = u.id
+            ON p.userId = u.id 
+            WHERE public=1
+            ORDER BY p.createdAt DESC
             ";
 
     $result = $this->conn->query($sql);
@@ -160,10 +162,10 @@ class PostService
     return $post;
   }
 
-  public function countPost($published = 1)
+  public function countPost($public = 1)
   {
 
-    $sql = "SELECT COUNT(*) AS post_count FROM tbPosts WHERE published=$published";
+    $sql = "SELECT COUNT(*) AS post_count FROM tbPosts WHERE public=$public";
 
     $result = $this->conn->query($sql);
 
