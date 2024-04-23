@@ -50,9 +50,13 @@ $(document).ready(function () {
 
   // 
   $('.btn-comment').click(function (event) {
+    console.log("clicked")
     var commentIcon = $(this);
     var commentText = commentIcon.siblings("input[type='text']").val(); // Get comment text
     var postId = commentIcon.data("postId");
+
+
+    console.log("clicked", commentText)
 
     $.ajax({
       url: "comment-action.php",
@@ -66,25 +70,72 @@ $(document).ready(function () {
     })
   });
 
+  $('#submit-comment').click(function (event) {
+    var commentText = $("#comment-input").val();
+
+    var postId = $(this).data('post-id');
+
+
+    $.ajax({
+      url: "comment-action.php",
+      type: "POST",
+      data: { postId: postId, content: commentText },
+      success: function (response) {
+        updateCommentCount(postId, response);
+        $("#comment-input").val("");
+
+        fetchComments(postId);
+      }
+    })
+
+  });
+
   $('.view-comments').click(function (event) {
     var postId = $(this).data('post-id');
     fetchComments(postId);
 
     // Show the modal
-    // $('#commentsModal').modal('show');
+    $('#commentModal').modal('show');
   });
 
   function fetchComments(postId) {
-    console.log("test");
     $.ajax({
-      url: "get-comments.php",
+      url: "get-comments.php", // Replace with your comment fetching script
       type: "GET",
       data: { postId: postId },
       success: function (response) {
-        console.log(response);
+        // Parse the response (assuming JSON format)
+        var comments = JSON.parse(response);
+
+        $('#comments-container').html("");
+
+        for (var i = 0; i < comments.length; i++) {
+          var comment = comments[i];
+
+          var commentElement = `
+              <div class="d-flex "  >
+                <div><img src="./source/images/users/${comment.image}" alt="Avatar" class="avatar" ></div>
+                <div class="d-flex flex-column " style="margin-left: 4px;">
+                  <span><strong>${comment.username}</strong></span>
+                  <p>${comment.content}</p>
+                </div>
+              </div>
+              <hr>
+            `;
+          $('#comments-container').append(commentElement);
+
+        }
+
+        $('#submit-comment').attr("data-post-id", postId);
+
       }
-    })
+
+    });
   }
+
+
+
+
 });
 
 

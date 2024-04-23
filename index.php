@@ -26,7 +26,7 @@ $commentService = new CommentService();
 ?>
 <!-- Contain -->
 <!-- Card Section -->
-<div class="container">
+<div class="container" style="margin-top: 100px;">
 
   <?php
   if (!$posts) {
@@ -61,7 +61,7 @@ $commentService = new CommentService();
 
                     <span class="pe-2 comment-count" data-post-id="<?php echo $post->getId(); ?>"> <?php echo $totalComments; ?>
                     </span>
-                    <span id="comment-icon-<?php echo $post->getId(); ?>" class="comment-icon view-comments" data-post-id="<?php echo $post->getId(); ?>" data-bs-toggle="modal" data-bs-target="#commentModal">
+                    <span id="comment-icon-<?php echo $post->getId(); ?>" class="comment-icon view-comments" data-post-id="<?php echo $post->getId(); ?>">
                       <i class="fa-regular fa-comment"></i>
                     </span>
                   </div>
@@ -77,7 +77,7 @@ $commentService = new CommentService();
             </div>
             <div class="cmt">
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="comment" />
+                <input type="text" class="form-control " placeholder="comment" />
                 <button class="btn btn-info btn-comment" type="button" data-post-id="<?php echo $post->getId(); ?>">
                   <i class="fa-solid fa-paper-plane fa-lg" style="color: #ffffff"></i>
                 </button>
@@ -86,6 +86,7 @@ $commentService = new CommentService();
           </div>
         </div>
       </div>
+
 
   <?php
     }
@@ -106,8 +107,8 @@ $commentService = new CommentService();
 
   <?php require "updateProfileModal.php" ?>
   <?php require "commentModal.php" ?>
+</div>
 
 
-
-  <!-- footer -->
-  <?php include('include/footer.php') ?>
+<!-- footer -->
+<?php include('include/footer.php') ?>
