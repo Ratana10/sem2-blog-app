@@ -107,7 +107,7 @@ $commentService = new CommentService();
 
   <?php require "updateProfileModal.php" ?>
   <?php require "commentModal.php" ?>
-</div>
+
 
 
 <!-- footer -->
