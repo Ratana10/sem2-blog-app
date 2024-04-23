@@ -179,4 +179,13 @@ class UserService
     }
     return true;
   }
+
+  public function updateImage($userId, $image){
+    $sql = "UPDATE tbUsers SET image='$image' WHERE id=$userId ";
+
+    if (!$this->conn->query($sql)) {
+      return false;
+    }
+    return true;
+  }
 }

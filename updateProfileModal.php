@@ -6,7 +6,7 @@
           <h5 class="modal-title" id="updateProfileModalLabel">Profile</h5>
           <button type="button" class="btn-close btnCloseProfile" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="update-profile.php" method="post">
+        <form action="update-profile.php" method="post" enctype="multipart/form-data">
           <div class="modal-body">
             <div>
               <div class="d-flex justify-content-center mb-3">
