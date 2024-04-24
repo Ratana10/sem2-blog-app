@@ -131,3 +131,32 @@ if ($conn->query($sql) === TRUE) {
   </script>
   ";
 }
+
+
+// create table Likes
+$sql = "CREATE TABLE IF NOT EXISTS tbLikes(
+  id int(6) AUTO_INCREMENT PRIMARY KEY,
+  postId INT(6) NOT NULL,
+  userId INT(6) NOT NULL,
+  createdAt TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NULL DEFAULT NULL,
+  FOREIGN KEY (postId) REFERENCES tbPosts(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (userId) REFERENCES tbUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
+);";
+
+
+// //-- Define created_at column with TIMESTAMP data type and default value
+
+if ($conn->query($sql) === TRUE) {
+  echo "
+    <script>
+      console.log('tblikes created successfully');
+    </script>
+  ";
+} else {
+  echo "
+  <script>
+    console.log('error creating like  . $conn->error  .');
+  </script>
+  ";
+}
