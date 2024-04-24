@@ -8,20 +8,7 @@ if (!isset($_SESSION['userId']) && !isset($_SESSION['username'])) {
     header('location: ./auth/login.php');
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="source/css/style.css">
-
-</head>
-
-<body>
+<?php require_once "include/header.php"  ?>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
         <div class="container-fluid">
@@ -106,7 +93,6 @@ if (!isset($_SESSION['userId']) && !isset($_SESSION['username'])) {
         function updateTag(tag) {
             document.getElementById('tag').innerText = tag;
         }
-    </script>
-</body>
 
-</html>
+
+<?php require_once "include/footer.php" ?>

@@ -96,12 +96,12 @@ $commentService = new CommentService();
     <h1 class="user-name"><?php echo $username ?></h1>
     <!-- Other user details like location, work, education, etc. -->
     <div>
-      <button class="btn btn-primary me-1">
+      <a class="btn btn-primary me-1" href="post.php">
         Add post
-      </button>
-      <button class="btn btn-primary ms-1">
+      </a>
+      <a class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#updateProfileModal">
         Update Profile
-      </button>
+      </a>
     </div>
   </div>
   <hr class="Hr-line">
