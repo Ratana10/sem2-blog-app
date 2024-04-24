@@ -5,6 +5,13 @@ include('includes/sidebar.php');
 
 ?>
 
+<?php
+include_once "../service/userService.php";
+$userService = new UserService();
+
+$users = $userService->getAllUsers(1);
+?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -75,7 +82,7 @@ include('includes/sidebar.php');
                       </td>
                       <td><?php echo $user->getCreatedAt() ?></td>
                       <td>
-                        <button class="btn btn-danger">
+                        <button class="btn btn-danger delete-user" data-user-id="<?php echo $user->getId() ?>" data-toggle="modal" data-target="#deleteUserModal">
                           Delete
                         </button>
                       </td>
@@ -102,7 +109,42 @@ include('includes/sidebar.php');
       </div>
 
     </div><!-- /.container-fluid -->
+
+
+    <div>
+      <!-- Modal -->
+      <div class="modal fade delete-user" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteUserModalLabel">Delete User</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to delete this user ?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary confirmDeletePost" data-dismiss="modal">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
   </section>
+
+  
+
+
+
+
+
+
   <!-- /.content -->
 </div>
 
