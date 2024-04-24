@@ -1,16 +1,21 @@
 <nav class="navbar fixed-top  navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img class="logo-img rounded" src="source/images/logo/Linkin.png" alt="">
+    <a class="navbar-brand" href="index.php">
+      <img class="logo-img rounded" src="source/images/logo/kolap.png" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span><i class="fa-solid fa-bars"></i></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Home">
+        <li class="nav-item">
+          <a class="nav-link" href="index.php" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Home">
             <i class="fa-solid fa-house"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Friends">
+            <i class="fa-solid fa-user-group"></i>
           </a>
         </li>
       </ul>
@@ -22,7 +27,7 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end ">
           <li>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="myposts.php">
               <span><i class="fa-solid fa-tag"></i></span>My Post
             </a>
           </li>

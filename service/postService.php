@@ -12,6 +12,31 @@ class PostService
     $this->conn = $conn;
   }
 
+  public function getmyPosts($userId)
+  {
+    $sql = "SELECT p.id as postId, p.userId, p.title, p.description, p.image, p.liked, p.public, p.createdAt, p.updatedAt, 
+            u.id, u.username, u.image as profile
+            FROM tbPosts p INNER JOIN tbUsers u 
+            ON p.userId = u.id
+            WHERE u.id = $userId 
+            ";
+
+
+    $result = $this->conn->query($sql);
+    if ($result->num_rows === 0) {
+      return false;
+    }
+
+    $posts = array();
+
+    while ($row = $result->fetch_assoc()) {
+      $post = $this->fetchPostWithUser($row);
+      $posts[] = $post; // Add the post to the array
+    }
+
+    return $posts;
+  }
+
   public function createPost($post)
   {
     $sql = " INSERT INTO tbPosts(userId, title, description, image, liked, public) VALUES (
@@ -162,6 +187,8 @@ class PostService
     return $totalLike;
   }
 
+  
+
   private function fetchToPost($row)
   {
     $post = new Post(
@@ -194,4 +221,6 @@ class PostService
 
     return $totalPost;
   }
+
+  
 }
