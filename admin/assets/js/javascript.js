@@ -24,9 +24,6 @@ $(document).ready(function () {
         setTimeout(function () {
           location.reload();
         }, 1000); // Reload after 3 seconds (same as toast timer)
-
-
-
       }
     });
 
