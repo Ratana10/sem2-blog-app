@@ -3,6 +3,10 @@
 
 include_once "service/postService.php";
 
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+
+
+
 if ($postId = $_GET['id']) {
     $postService = new PostService();
 
@@ -29,7 +33,7 @@ if ($postId = $_GET['id']) {
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
         <div class="container-fluid">
             <!-- <a class="navbar-brand" href="index.php">&lt;- back</a> -->
-            <a class="navbar-brand" href="index.php"><i class="fas fa-arrow-left"></i> Back</a>
+            <a class="navbar-brand" href="<?php echo isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php'; ?>"><i class="fas fa-arrow-left"></i> Back</a>
         </div>
     </nav>
 

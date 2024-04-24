@@ -22,6 +22,13 @@ $posts = $postService->getmyPosts($userId);
 
 ?>
 
+<?php
+include('service/commentService.php');
+
+$commentService = new CommentService();
+
+?>
+
 <!-- Contain -->
 <!-- Card Section -->
 <style>
@@ -107,6 +114,7 @@ $posts = $postService->getmyPosts($userId);
       echo '<p>No data found</p>';
     } else {
       foreach ($posts as $post) {
+        $totalComments = $commentService->countComments($post->getId());
 
     ?>
         <div class="wrapper d-flex justify-content-center">
@@ -127,8 +135,29 @@ $posts = $postService->getmyPosts($userId);
                     <div class="icon d-flex gap-2">
                       <span class="pe-2"> <?php echo $post->getLiked(); ?> </span>
                       <span><i class="fa-solid fa-heart"></i></span>
-                      <span class="pe-2">1</span>
-                      <span><i class="fa-regular fa-comment"></i></span>
+                      <span class="pe-2 comment-count" data-post-id="<?php echo $post->getId(); ?>"> <?php echo $totalComments; ?>
+                      </span>
+                      <span id="comment-icon-<?php echo $post->getId(); ?>" class="comment-icon view-comments" data-post-id="<?php echo $post->getId(); ?>">
+                        <i class="fa-regular fa-comment"></i>
+                      </span>
+                      <div class="dropdown">
+                        <span class="ms-3 " data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </span>
+
+                        <ul class="dropdown-menu ">
+                          <li>
+                            <a class="dropdown-item edit-post btn" data-post-id="<?php echo $post->getId(); ?>">
+                              <i class="fa-solid fa-pen me-3" style="color: blue;"></i>Edit
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item delete-post btn" data-post-id="<?php echo $post->getId(); ?>">
+                              <i class="fa-solid fa-trash me-3" style="color: red;"></i>Delete
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -156,4 +185,21 @@ $posts = $postService->getmyPosts($userId);
     }
     ?>
 
-    <?php include('include/footer.php') ?>
+    <?php
+    include('service/userService.php');
+
+    $userId = $_SESSION['userId'];
+
+    $userService = new UserService();
+
+    $user = $userService->getUserById($userId);
+
+
+    ?>
+
+    <?php require "updateProfileModal.php" ?>
+    <?php require "commentModal.php" ?>
+
+  </div>
+
+  <?php include('include/footer.php') ?>
