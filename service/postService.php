@@ -34,9 +34,9 @@ class PostService
   public function updatePost($post)
   {
     $sql = " UPDATE tbPosts SET
-    title = '" . $post->getTitle() . "',
     description = '" . $post->getDescription() . "',
-    image = '" . $post->getImage() . "'
+    image = '" . $post->getImage() . "',
+    public = " . $post->getPublic() . "
     WHERE id=" . $post->getId();
 
     if (!$this->conn->query($sql)) {
@@ -46,6 +46,22 @@ class PostService
 
     return true;
   }
+
+  public function getPostById($postId)
+  {
+    $sql = "SELECT id, userId, title, description, image, public, liked, createdAt, updatedAt
+    FROM tbPosts WHERE id=$postId";
+
+    $result = $this->conn->query($sql);
+    if ($result->num_rows === 0) {
+      return false;
+    }
+
+    $row = $result->fetch_assoc();
+    $post = $this->fetchToPost($row);
+    return $post;
+  }
+
   public function getAllPostsV1()
   {
     $sql = "SELECT * FROM tbPosts";
@@ -155,7 +171,7 @@ class PostService
       $row['description'],
       $row['image'],
       $row['liked'],
-      $row['published'],
+      $row['public'],
       $row['createdAt'],
       $row['updatedAt']
     );

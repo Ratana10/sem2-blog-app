@@ -134,6 +134,13 @@ $(document).ready(function () {
     });
   }
 
+  $('.edit-post').click(function (event) {
+    var postId = $(this).data("postId");
+
+    console.log("postid", postId);
+    window.location.href = "edit-post.php?id=" + postId;
+
+  });
 
 
 
@@ -209,5 +216,4 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
-
 
