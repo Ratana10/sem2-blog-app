@@ -11,7 +11,8 @@ include('service/postService.php');
 
 $userId = $_SESSION["userId"];
 
-$username = $_SESSION["username"];
+$profileUsername = $_SESSION["username"];
+
 
 $profile = $_SESSION["image"];
 
@@ -93,7 +94,7 @@ $commentService = new CommentService();
 
   </div>
   <div class="user-details">
-    <h1 class="user-name"><?php echo $username ?></h1>
+    <h1 class="user-name"><?php echo $profileUsername ?></h1>
     <!-- Other user details like location, work, education, etc. -->
     <div>
       <a class="btn btn-primary me-1" href="post.php">
