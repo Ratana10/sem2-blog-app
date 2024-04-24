@@ -38,7 +38,7 @@ $commentService = new CommentService();
   ?>
 
 
-      <div class="wrapper d-flex justify-content-center">
+      <div class="wrapper d-flex justify-content-center card-container-<?php echo $post->getId(); ?>">
         <div class="card mb-3">
           <img class="img-fluid" src="source/images/posts/<?php echo $post->getImage(); ?>" style="width: 56rem" class="card-img-top" alt="..." />
           <div class="card-body">
@@ -64,6 +64,24 @@ $commentService = new CommentService();
                     <span id="comment-icon-<?php echo $post->getId(); ?>" class="comment-icon view-comments" data-post-id="<?php echo $post->getId(); ?>">
                       <i class="fa-regular fa-comment"></i>
                     </span>
+                    <div class="dropdown">
+                      <span class="ms-3 " data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </span>
+
+                      <ul class="dropdown-menu ">
+                        <li>
+                          <a class="dropdown-item edit-post btn" data-post-id="<?php echo $post->getId(); ?>">
+                            <i class="fa-solid fa-pen me-3" style="color: blue;"></i>Edit
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item delete-post btn" data-post-id="<?php echo $post->getId(); ?>">
+                            <i class="fa-solid fa-trash me-3" style="color: red;"></i>Delete
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -134,9 +134,51 @@ $(document).ready(function () {
     });
   }
 
+  $('.edit-post').click(function (event) {
+    var postId = $(this).data("postId");
+    window.location.href = "edit-post.php?id=" + postId;
 
+  });
 
+  $('.delete-post').click(function (e) {
+    var postId = $(this).data("postId");
 
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success ms-2",
+        cancelButton: "btn btn-danger me-2"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "You want to delete this post?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'delete-post-action.php',
+          type: 'POST',
+          data: {
+            postId: postId
+          },
+          success: function (res) {
+            Swal.fire({
+              title: "Delete Success!",
+              icon: "success"
+            });
+            setTimeout(function () {
+              $(`.card-container-${postId}`).remove();
+            }, 200)
+          }
+        });
+      }
+    });
+  });
 });
 
 
@@ -209,5 +251,4 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
-
 

@@ -59,7 +59,8 @@ $sql = "CREATE TABLE IF NOT EXISTS tbPosts(
   public TINYINT NOT NULL DEFAULT 1,
   createdAt TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP NULL DEFAULT NULL,
-  CONSTRAINT FK_UserPost FOREIGN KEY (userId) REFERENCES tbUsers(id)
+  CONSTRAINT FK_UserPost FOREIGN KEY (userId) REFERENCES tbUsers(id) 
+  ON UPDATE CASCADE ON DELETE CASCADE
 );";
 
 // //-- Define created_at column with TIMESTAMP data type and default value
@@ -88,6 +89,7 @@ $sql = "CREATE TABLE IF NOT EXISTS tbComments(
   updatedAt TIMESTAMP NULL DEFAULT NULL,
   CONSTRAINT FK_UserComment FOREIGN KEY (userId) REFERENCES tbUsers(id),
   CONSTRAINT FK_PostComment FOREIGN KEY (postId) REFERENCES tbPosts(id)
+  ON UPDATE CASCADE ON DELETE CASCADE
 );";
 
 if ($conn->query($sql) === TRUE) {
