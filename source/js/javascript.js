@@ -136,10 +136,22 @@ $(document).ready(function () {
 
   $('.edit-post').click(function (event) {
     var postId = $(this).data("postId");
-
-    console.log("postid", postId);
     window.location.href = "edit-post.php?id=" + postId;
 
+  });
+
+  $('.delete-post').click(function (e) {
+    var postId = $(this).data("postId");
+    $.ajax({
+      url: 'delete-post-action.php',
+      type: 'POST',
+      data: {
+        postId: postId
+      },
+      success: function (res) {
+        console.log("successs", res);
+      }
+    })
   });
 
 

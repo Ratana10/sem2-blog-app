@@ -76,7 +76,9 @@ $commentService = new CommentService();
                           </a>
                         </li>
                         <li>
-                          <a class="dropdown-item" href="#"><i class="fa-solid fa-trash me-3" style="color: red;"></i>Delete</a>
+                          <a class="dropdown-item delete-post" data-post-id="<?php echo $post->getId(); ?>">
+                            <i class="fa-solid fa-trash me-3" style="color: red;"></i>Delete
+                          </a>
                         </li>
                       </ul>
                     </div>
