@@ -142,20 +142,43 @@ $(document).ready(function () {
 
   $('.delete-post').click(function (e) {
     var postId = $(this).data("postId");
-    $.ajax({
-      url: 'delete-post-action.php',
-      type: 'POST',
-      data: {
-        postId: postId
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success ms-2",
+        cancelButton: "btn btn-danger me-2"
       },
-      success: function (res) {
-        console.log("successs", res);
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "You want to delete this post?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'delete-post-action.php',
+          type: 'POST',
+          data: {
+            postId: postId
+          },
+          success: function (res) {
+            Swal.fire({
+              title: "Delete Success!",
+              icon: "success"
+            });
+            setTimeout(function () {
+              $(`.card-container-${postId}`).remove();
+            }, 200)
+          }
+        });
       }
-    })
+    });
   });
-
-
-
 });
 
 

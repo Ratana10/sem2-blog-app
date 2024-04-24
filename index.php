@@ -38,7 +38,7 @@ $commentService = new CommentService();
   ?>
 
 
-      <div class="wrapper d-flex justify-content-center">
+      <div class="wrapper d-flex justify-content-center card-container-<?php echo $post->getId(); ?>">
         <div class="card mb-3">
           <img class="img-fluid" src="source/images/posts/<?php echo $post->getImage(); ?>" style="width: 56rem" class="card-img-top" alt="..." />
           <div class="card-body">
@@ -71,12 +71,12 @@ $commentService = new CommentService();
 
                       <ul class="dropdown-menu ">
                         <li>
-                          <a class="dropdown-item edit-post" data-post-id="<?php echo $post->getId(); ?>">
+                          <a class="dropdown-item edit-post btn" data-post-id="<?php echo $post->getId(); ?>">
                             <i class="fa-solid fa-pen me-3" style="color: blue;"></i>Edit
                           </a>
                         </li>
                         <li>
-                          <a class="dropdown-item delete-post" data-post-id="<?php echo $post->getId(); ?>">
+                          <a class="dropdown-item delete-post btn" data-post-id="<?php echo $post->getId(); ?>">
                             <i class="fa-solid fa-trash me-3" style="color: red;"></i>Delete
                           </a>
                         </li>
